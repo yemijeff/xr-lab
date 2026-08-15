@@ -9,7 +9,7 @@ import { ContentItem } from '@xrlab/types';
  */
 export function readContentDirectory<T>(
   dirPath: string,
-  schema: z.ZodType<T>,
+  schema: z.ZodType<T, any, any>,
   options?: { onlyPublished?: boolean }
 ): ContentItem<T>[] {
   if (!fs.existsSync(dirPath)) {
@@ -59,7 +59,7 @@ export function readContentDirectory<T>(
 export function readContentBySlug<T>(
   dirPath: string,
   slug: string,
-  schema: z.ZodType<T>
+  schema: z.ZodType<T, any, any>
 ): ContentItem<T> | null {
   const items = readContentDirectory(dirPath, schema);
   return items.find((item) => item.slug === slug) || null;

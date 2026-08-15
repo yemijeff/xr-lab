@@ -1,0 +1,35 @@
+[
+  {
+    "id": "lrn-20260815-01",
+    "date": "2026-08-15",
+    "stageId": "stage-01",
+    "stageName": "XR Foundations",
+    "topic": "3DoF vs 6DoF & Spatial Tracking Systems",
+    "skillId": "sk-spatial-ux",
+    "durationMinutes": 90,
+    "confidence": 4,
+    "difficulty": "medium",
+    "notes": "Explored how translational tracking (X, Y, Z) enables motion parallax, which is the primary depth cue absent in 3DoF. Key insight: without 6DoF, user presence drops drastically and virtual menus feel pasted on the eyeballs.",
+    "takeaway": "Translational motion parallax is the core differentiator for physical presence in spatial environments.",
+    "resources": [
+      "Apple Human Interface Guidelines - Spatial Layout",
+      "Meta Quest Design Guidelines"
+    ]
+  },
+  {
+    "id": "lrn-20260814-01",
+    "date": "2026-08-14",
+    "stageId": "stage-01",
+    "stageName": "XR Foundations",
+    "topic": "Field of View (FOV) and Ergonomic Comfort Zones",
+    "skillId": "sk-spatial-ergonomics",
+    "durationMinutes": 60,
+    "confidence": 4,
+    "difficulty": "easy",
+    "notes": "Mapped out comfortable viewing angles: primary content should sit within +/- 15 degrees vertically and +/- 30 degrees horizontally from resting eye vector to avoid neck fatigue.",
+    "takeaway": "Never place high-frequency interactive elements outside the 30-degree central cone of vision.",
+    "resources": [
+      "Designing for Spatial Computing - Ergonomics Paper"
+    ]
+  }
+]

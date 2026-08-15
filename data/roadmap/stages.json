@@ -1,0 +1,85 @@
+[
+  {
+    "id": "stage-01",
+    "number": "01",
+    "title": "XR Foundations",
+    "tagline": "Understanding the physical, perceptual, and spatial realities of immersive technology.",
+    "status": "in_progress",
+    "progress": 65,
+    "topics": [
+      { "id": "top-01-01", "name": "VR, AR, MR & Spatial Computing Definitions", "status": "mastered" },
+      { "id": "top-01-02", "name": "3DoF vs 6DoF & Spatial Degrees of Freedom", "status": "mastered" },
+      { "id": "top-01-03", "name": "Head, Eye, and Hand Tracking Systems", "status": "understood" },
+      { "id": "top-01-04", "name": "Passthrough & Spatial Anchors", "status": "learning" },
+      { "id": "top-01-05", "name": "Field of View (FOV) & Visual Comfort", "status": "learning" },
+      { "id": "top-01-06", "name": "Presence, Immersion & Motion Sickness / Cybersickness", "status": "practicing" },
+      { "id": "top-01-07", "name": "Spatial Cognition & Mental Models", "status": "not_started" }
+    ],
+    "evidenceCount": 2
+  },
+  {
+    "id": "stage-02",
+    "number": "02",
+    "title": "Spatial UX",
+    "tagline": "Designing layout, depth, hierarchy, and affordances when interfaces leave the 2D canvas.",
+    "status": "not_started",
+    "progress": 15,
+    "topics": [
+      { "id": "top-02-01", "name": "Spatial Hierarchy, Distance & Depth Planes", "status": "learning" },
+      { "id": "top-02-02", "name": "World-Locked, Head-Locked & Object-Attached UI", "status": "not_started" },
+      { "id": "top-02-03", "name": "Spatial Menus, Radial Menus & Palettes", "status": "not_started" },
+      { "id": "top-02-04", "name": "Contextual & Environmental UI", "status": "not_started" },
+      { "id": "top-02-05", "name": "Spatial Typography, Ergonomics & Scale", "status": "not_started" },
+      { "id": "top-02-06", "name": "Spatial Audio & Multi-modal Feedback", "status": "not_started" }
+    ],
+    "evidenceCount": 0
+  },
+  {
+    "id": "stage-03",
+    "number": "03",
+    "title": "XR Interaction & Prototyping",
+    "tagline": "Mastering multimodal inputs: gaze, pinch, direct touch, raycasting, and physical handles.",
+    "status": "not_started",
+    "progress": 0,
+    "topics": [
+      { "id": "top-03-01", "name": "Gaze & Eye-Tracking Selection Models", "status": "not_started" },
+      { "id": "top-03-02", "name": "Direct Hand Interactions (Pinch, Poke, Grab, Drag)", "status": "not_started" },
+      { "id": "top-03-03", "name": "Raycast Pointing & Distant Interaction", "status": "not_started" },
+      { "id": "top-03-04", "name": "Two-Handed Manipulation & Object Transformation", "status": "not_started" },
+      { "id": "top-03-05", "name": "XR Usability Testing & Ergonomic Boundaries", "status": "not_started" }
+    ],
+    "evidenceCount": 0
+  },
+  {
+    "id": "stage-04",
+    "number": "04",
+    "title": "3D + Development",
+    "tagline": "Bridging product design into Blender modeling, Unity scene architecture, and XR interaction toolkits.",
+    "status": "not_started",
+    "progress": 0,
+    "topics": [
+      { "id": "top-04-01", "name": "Blender 3D Modeling Fundamentals for Designers", "status": "not_started" },
+      { "id": "top-04-02", "name": "Materials, Shaders & Spatial Lighting", "status": "not_started" },
+      { "id": "top-04-03", "name": "Unity Engine Basics: Scenes, GameObjects & Prefabs", "status": "not_started" },
+      { "id": "top-04-04", "name": "Unity XR Interaction Toolkit (XRI)", "status": "not_started" },
+      { "id": "top-04-05", "name": "Basic C# Scripting for Interaction Logic", "status": "not_started" },
+      { "id": "top-04-06", "name": "Physics, Colliders & Locomotion", "status": "not_started" }
+    ],
+    "evidenceCount": 0
+  },
+  {
+    "id": "stage-05",
+    "number": "05",
+    "title": "Real XR Product Design",
+    "tagline": "Designing full-scale spatial products that solve problems only spatial computing can solve.",
+    "status": "not_started",
+    "progress": 0,
+    "topics": [
+      { "id": "top-05-01", "name": "Spatial Banking & Complex Data Visualization", "status": "not_started" },
+      { "id": "top-05-02", "name": "Immersive Spatial Workspace & Productivity", "status": "not_started" },
+      { "id": "top-05-03", "name": "VR Virtual Museum & Cultural Heritage Experience", "status": "not_started" },
+      { "id": "top-05-04", "name": "Spatial Storytelling & Micro-Interactions", "status": "not_started" }
+    ],
+    "evidenceCount": 0
+  }
+]

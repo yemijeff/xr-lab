@@ -107,7 +107,57 @@ export const KnowledgeFrontmatterSchema = z.object({
 });
 export type KnowledgeFrontmatter = z.infer<typeof KnowledgeFrontmatterSchema>;
 
-// 7. Generic Content Item Container
+// 7. Roadmap Stage Schema
+export const RoadmapTopicSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  status: z.enum(['not_started', 'learning', 'practicing', 'understood', 'mastered']),
+});
+export type RoadmapTopic = z.infer<typeof RoadmapTopicSchema>;
+
+export const RoadmapStageSchema = z.object({
+  id: z.string(),
+  number: z.string(),
+  title: z.string(),
+  tagline: z.string(),
+  status: z.enum(['not_started', 'in_progress', 'completed']),
+  progress: z.number().min(0).max(100),
+  topics: z.array(RoadmapTopicSchema),
+  evidenceCount: z.number().default(0),
+});
+export type RoadmapStage = z.infer<typeof RoadmapStageSchema>;
+
+// 8. Skill Schema
+export const SkillSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  category: z.string(),
+  level: z.number().min(1).max(5),
+  targetLevel: z.number().min(1).max(5),
+  confidence: z.number().min(1).max(5),
+  lastPracticed: z.string(),
+  description: z.string(),
+});
+export type Skill = z.infer<typeof SkillSchema>;
+
+// 9. Learning Record Schema
+export const LearningRecordSchema = z.object({
+  id: z.string(),
+  date: z.string(),
+  stageId: z.string(),
+  stageName: z.string(),
+  topic: z.string(),
+  skillId: z.string().optional(),
+  durationMinutes: z.number().default(60),
+  confidence: z.number().min(1).max(5).default(3),
+  difficulty: z.enum(['easy', 'medium', 'hard']).default('medium'),
+  notes: z.string(),
+  takeaway: z.string().optional(),
+  resources: z.array(z.string()).default([]),
+});
+export type LearningRecord = z.infer<typeof LearningRecordSchema>;
+
+// 10. Generic Content Item Container
 export interface ContentItem<T> {
   frontmatter: T;
   content: string;
