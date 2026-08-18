@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import { LearningRecordSchema } from '@xrlab/types';
+import { saveProjectFile } from '@/lib/githubSync';
 
 const DATA_FILE_PATH = path.join(process.cwd(), '../../data/learning/records.json');
 
@@ -43,10 +44,19 @@ export async function POST(req: NextRequest) {
     const newRecord = parseResult.data;
     const records = getRecords();
     const updatedRecords = [newRecord, ...records];
+    const jsonString = JSON.stringify(updatedRecords, null, 2);
 
-    fs.writeFileSync(DATA_FILE_PATH, JSON.stringify(updatedRecords, null, 2), 'utf-8');
+    const saveResult = await saveProjectFile(
+      'data/learning/records.json',
+      jsonString,
+      `log(learning): ${newRecord.topic}`
+    );
 
-    return NextResponse.json({ success: true, data: newRecord }, { status: 201 });
+    if (!saveResult.success) {
+      return NextResponse.json({ success: false, error: saveResult.error }, { status: 500 });
+    }
+
+    return NextResponse.json({ success: true, data: newRecord, mode: saveResult.mode }, { status: 201 });
   } catch (err: unknown) {
     const errorMsg = err instanceof Error ? err.message : 'Unknown error';
     return NextResponse.json({ success: false, error: errorMsg }, { status: 500 });

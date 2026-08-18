@@ -3,8 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { ExperimentFrontmatterSchema, ExperimentFrontmatter } from '@xrlab/types';
-
-const EXP_DIR = path.join(process.cwd(), '../../content/experiments');
+import { saveProjectFile } from '@/lib/githubSync';
 
 export async function POST(req: NextRequest) {
   try {
@@ -41,11 +40,22 @@ export async function POST(req: NextRequest) {
     const bodyContent = body.content || `## Objective\n${question}\n\n## Observations\n${result || ''}`;
     const fileContent = matter.stringify(bodyContent, validated);
     const fileName = `${dateStr}-${slug}.md`;
-    const filePath = path.join(EXP_DIR, fileName);
+    const relativeRepoPath = `content/experiments/${fileName}`;
 
-    fs.writeFileSync(filePath, fileContent, 'utf-8');
+    const saveResult = await saveProjectFile(
+      relativeRepoPath,
+      fileContent,
+      `content(experiment): ${title}`
+    );
 
-    return NextResponse.json({ success: true, data: { frontmatter: validated, slug, filePath } }, { status: 201 });
+    if (!saveResult.success) {
+      return NextResponse.json({ success: false, error: saveResult.error }, { status: 500 });
+    }
+
+    return NextResponse.json({
+      success: true,
+      data: { frontmatter: validated, slug, path: relativeRepoPath, mode: saveResult.mode },
+    }, { status: 201 });
   } catch (err: unknown) {
     const errorMsg = err instanceof Error ? err.message : 'Unknown error';
     return NextResponse.json({ success: false, error: errorMsg }, { status: 500 });
