@@ -11,6 +11,8 @@
     "dev": "npm run dev --workspaces --if-present",
     "dev:dashboard": "npm run dev --workspace=apps/dashboard",
     "dev:website": "npm run dev --workspace=apps/website",
+    "share:dashboard": "npx -y localtunnel --port 3000 --subdomain xrlab-dashboard",
+    "share:website": "npx -y localtunnel --port 3001 --subdomain xrlab-website",
     "build": "npm run build --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present"
