@@ -19,6 +19,7 @@ import {
   Send,
   SlidersHorizontal,
   ExternalLink,
+  X,
 } from 'lucide-react';
 
 const NAV_ITEMS = [
@@ -38,13 +39,18 @@ const NAV_ITEMS = [
   { name: 'Settings', href: '/settings', icon: SlidersHorizontal },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
 
-  return (
-    <aside className="w-64 border-r border-[#1e2230] bg-[#0c0d14] flex flex-col shrink-0 h-screen sticky top-0">
+  const sidebarContent = (
+    <div className="flex flex-col h-full bg-[#0c0d14]">
       {/* Brand / Logo */}
-      <div className="p-5 border-b border-[#1e2230] flex items-center justify-between">
+      <div className="p-4 sm:p-5 border-b border-[#1e2230] flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <div className="w-7 h-7 rounded-md bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 font-mono text-xs font-bold">
             XR
@@ -54,9 +60,16 @@ export function Sidebar() {
             <div className="text-[10px] text-slate-500 font-mono">WORKSPACE // OS</div>
           </div>
         </div>
-        <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-950/60 text-emerald-400 border border-emerald-800/40">
-          V1.0
-        </span>
+
+        {/* Mobile Close Button */}
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="md:hidden p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-[#1a1d2c] transition-colors"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        )}
       </div>
 
       {/* Navigation Links */}
@@ -71,9 +84,10 @@ export function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-all ${
+              onClick={onClose}
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-medium transition-all ${
                 isActive
-                  ? 'bg-sky-500/10 text-sky-300 border border-sky-500/20 shadow-sm'
+                  ? 'bg-sky-500/10 text-sky-300 border border-sky-500/20 shadow-sm font-semibold'
                   : 'text-slate-400 hover:text-slate-200 hover:bg-[#141724]'
               }`}
             >
@@ -87,7 +101,7 @@ export function Sidebar() {
       {/* Public Site Link & Status */}
       <div className="p-3 border-t border-[#1e2230] bg-[#090a0f]/50 space-y-2">
         <a
-          href="http://localhost:3001"
+          href="https://xr-lab-website.vercel.app"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-between px-3 py-2 rounded-md bg-[#131520] hover:bg-[#1a1e2d] border border-[#22273a] text-xs text-slate-300 transition-colors group"
@@ -100,9 +114,34 @@ export function Sidebar() {
         </a>
         <div className="px-3 py-1 text-[10px] font-mono text-slate-500 flex justify-between">
           <span>Active Stage</span>
-          <span className="text-sky-400">01 XR Foundations</span>
+          <span className="text-sky-400 font-medium">01 XR Foundations</span>
         </div>
       </div>
-    </aside>
+    </div>
+  );
+
+  return (
+    <>
+      {/* Desktop Sticky Sidebar */}
+      <aside className="hidden md:flex w-64 border-r border-[#1e2230] flex-col shrink-0 h-screen sticky top-0">
+        {sidebarContent}
+      </aside>
+
+      {/* Mobile Drawer (Slide-Over) */}
+      {isOpen && (
+        <div className="fixed inset-0 z-50 md:hidden flex">
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200"
+            onClick={onClose}
+          />
+
+          {/* Drawer Content */}
+          <div className="relative w-4/5 max-w-xs h-full border-r border-[#1e2230] shadow-2xl z-10 animate-in slide-in-from-left duration-200">
+            {sidebarContent}
+          </div>
+        </div>
+      )}
+    </>
   );
 }
