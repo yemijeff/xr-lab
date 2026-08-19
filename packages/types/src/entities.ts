@@ -56,11 +56,15 @@ export const ProjectFrontmatterSchema = z.object({
   summary: z.string(),
   problem: z.string().optional(),
   concept: z.string().optional(),
+  spatialUX: z.string().optional(),
   stage: z.string().optional(),
   skills: z.array(z.string()).default([]),
   tools: z.array(z.string()).default([]),
   coverImage: z.string().optional(),
   images: z.array(z.string()).default([]),
+  videos: z.array(z.string()).default([]),
+  prototypeLinks: z.array(z.string()).default([]),
+  githubLinks: z.array(z.string()).default([]),
   featured: z.boolean().default(false),
   publishedAt: z.string().optional(),
 });
@@ -71,12 +75,15 @@ export const ResearchFrontmatterSchema = z.object({
   id: z.string(),
   title: z.string(),
   slug: z.string(),
-  date: z.string(),
+  date: z.string().optional(),
   status: PublicationStatusSchema.default('draft'),
+  stage: z.string().optional(),
   question: z.string(),
   findings: z.string().optional(),
   conclusion: z.string().optional(),
   tags: z.array(z.string()).default([]),
+  sources: z.array(z.string()).default([]),
+  evidence: z.array(z.string()).default([]),
   relatedPrinciples: z.array(z.string()).default([]),
   publishedAt: z.string().optional(),
 });
@@ -87,9 +94,13 @@ export const PrincipleFrontmatterSchema = z.object({
   id: z.string(),
   title: z.string(),
   slug: z.string(),
+  date: z.string().optional(),
+  status: PublicationStatusSchema.default('published'),
   statement: z.string(),
   evidence: z.array(z.string()).default([]),
   confidence: z.number().min(1).max(5).default(5),
+  stage: z.string().optional(),
+  exceptions: z.string().optional(),
   publishedAt: z.string().optional(),
 });
 export type PrincipleFrontmatter = z.infer<typeof PrincipleFrontmatterSchema>;
@@ -99,9 +110,15 @@ export const KnowledgeFrontmatterSchema = z.object({
   id: z.string(),
   title: z.string(),
   slug: z.string(),
-  definition: z.string(),
-  simpleExplanation: z.string(),
+  date: z.string().optional(),
+  status: PublicationStatusSchema.default('published'),
+  topic: z.string().optional(),
+  summary: z.string().optional(),
+  takeaways: z.array(z.string()).default([]),
+  definition: z.string().optional(),
+  simpleExplanation: z.string().optional(),
   whyItMatters: z.string().optional(),
+  stage: z.string().optional(),
   confidence: z.number().min(1).max(5).default(5),
   tags: z.array(z.string()).default([]),
 });
@@ -140,7 +157,20 @@ export const SkillSchema = z.object({
 });
 export type Skill = z.infer<typeof SkillSchema>;
 
-// 9. Learning Record Schema
+// 9. Goal Schema
+export const GoalSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  type: z.enum(['stage', 'project', 'skill', 'experiment', 'long_term']),
+  status: z.enum(['not_started', 'in_progress', 'completed']),
+  targetDate: z.string(),
+  progress: z.number().min(0).max(100),
+  measurableOutcome: z.string(),
+  relatedStage: z.string().optional(),
+});
+export type Goal = z.infer<typeof GoalSchema>;
+
+// 10. Learning Record Schema
 export const LearningRecordSchema = z.object({
   id: z.string(),
   date: z.string(),
@@ -157,7 +187,7 @@ export const LearningRecordSchema = z.object({
 });
 export type LearningRecord = z.infer<typeof LearningRecordSchema>;
 
-// 10. Generic Content Item Container
+// 11. Generic Content Item Container
 export interface ContentItem<T> {
   frontmatter: T;
   content: string;

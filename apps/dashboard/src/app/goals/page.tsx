@@ -1,87 +1,122 @@
-import React from 'react';
-import fs from 'fs';
-import path from 'path';
-import { Target, Calendar, CheckCircle2 } from 'lucide-react';
+'use client';
 
-interface Goal {
-  id: string;
-  title: string;
-  type: string;
-  status: string;
-  targetDate: string;
-  progress: number;
-  measurableOutcome: string;
-  relatedStage: string;
-}
-
-function getGoals(): Goal[] {
-  const filePath = path.join(process.cwd(), '../../data/goals/goals.json');
-  if (!fs.existsSync(filePath)) return [];
-  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-}
+import React, { useState, useEffect } from 'react';
+import { Target, CheckCircle2, Circle, Calendar, Sparkles } from 'lucide-react';
+import { Goal } from '@xrlab/types';
 
 export default function GoalsPage() {
-  const goals = getGoals();
+  const [goals, setGoals] = useState<Goal[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [updatingId, setUpdatingId] = useState<string | null>(null);
+
+  const fetchGoals = async () => {
+    try {
+      const res = await fetch('/api/goals');
+      const data = await res.json();
+      if (data.success) {
+        setGoals(data.data);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchGoals();
+  }, []);
+
+  const handleToggleGoal = async (goalId: string, currentStatus: string) => {
+    const nextStatus = currentStatus === 'completed' ? 'not_started' : 'completed';
+    const nextProgress = nextStatus === 'completed' ? 100 : 0;
+    setUpdatingId(goalId);
+
+    try {
+      const res = await fetch('/api/goals', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ goalId, status: nextStatus, progress: nextProgress }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setGoals(data.data);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setUpdatingId(null);
+    }
+  };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       {/* Header */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-2 text-xs font-mono text-rose-400">
+      <div className="space-y-3">
+        <div className="flex items-center gap-2 text-xs font-mono text-sky-400">
           <Target className="w-4 h-4" />
-          <span>OBJECTIVES & MEASURABLE OUTCOMES</span>
+          <span>MILESTONES & TARGET OUTCOMES</span>
         </div>
-        <h1 className="text-2xl font-semibold tracking-tight text-white">
-          Journey Goals
+        <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white">
+          Goals & Milestones
         </h1>
         <p className="text-slate-400 text-sm max-w-2xl leading-relaxed">
-          Structured milestones tracking the transition into Spatial Design. Every goal is anchored to a measurable output or prototype.
+          Concrete, evidence-driven milestones. Click any goal checkbox to mark it completed as you build prototypes and publish case studies.
         </p>
       </div>
 
-      {/* Goals Grid */}
-      <div className="space-y-6">
-        {goals.map((goal) => (
-          <div
-            key={goal.id}
-            className="rounded-2xl bg-[#0f111a] border border-[#1e2230] hover:border-[#2a3045] p-6 space-y-4 transition-colors shadow-lg"
-          >
-            <div className="flex items-center justify-between text-xs pb-3 border-b border-[#1a1d29]">
-              <div className="flex items-center gap-2">
-                <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-medium bg-rose-950/50 text-rose-300 border border-rose-800/40 uppercase">
-                  {goal.type.replace('_', ' ')}
-                </span>
-                <span className="text-[11px] font-mono text-slate-400">
-                  STAGE: {goal.relatedStage}
-                </span>
-              </div>
-              <span className="flex items-center gap-1 text-[11px] font-mono text-slate-500">
-                <Calendar className="w-3.5 h-3.5" /> Target: {goal.targetDate}
-              </span>
-            </div>
+      {/* Goals Stream */}
+      <div className="space-y-4 max-w-3xl">
+        {goals.map((goal) => {
+          const isCompleted = goal.status === 'completed';
+          const isUpdating = updatingId === goal.id;
 
-            <div>
-              <h2 className="text-lg font-semibold text-white">{goal.title}</h2>
-              <div className="mt-2 p-3.5 rounded-xl bg-[#141724] border border-[#1e2336] text-xs text-slate-300">
-                <span className="font-mono text-rose-400 font-semibold">Measurable Outcome: </span>
-                {goal.measurableOutcome}
-              </div>
-            </div>
+          return (
+            <div
+              key={goal.id}
+              className={`p-6 rounded-2xl border transition-all flex items-start justify-between gap-4 shadow-lg ${
+                isCompleted
+                  ? 'bg-emerald-950/20 border-emerald-800/40 text-emerald-300'
+                  : 'bg-[#0f111a] border-[#1e2230] hover:border-[#2a3045]'
+              }`}
+            >
+              <div className="space-y-2 flex-1">
+                <div className="flex items-center gap-2 text-xs font-mono">
+                  <span className="px-2 py-0.5 rounded text-[10px] bg-[#141724] text-slate-400 border border-[#24283b] uppercase">
+                    {goal.type}
+                  </span>
+                  <span className="text-slate-500 flex items-center gap-1">
+                    <Calendar className="w-3 h-3" /> Target: {goal.targetDate}
+                  </span>
+                </div>
 
-            <div className="space-y-2 pt-2">
-              <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-slate-400">Progress</span>
-                <span className="text-rose-400 font-bold">{goal.progress}%</span>
+                <h3 className={`text-base font-semibold ${isCompleted ? 'text-emerald-200 line-through opacity-80' : 'text-white'}`}>
+                  {goal.title}
+                </h3>
+
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  <strong>Outcome: </strong>{goal.measurableOutcome}
+                </p>
               </div>
-              <div className="w-full h-2 rounded-full bg-[#1e2336] overflow-hidden">
-                <div
-                  className="h-full bg-gradient-to-r from-rose-500 to-amber-500 rounded-full"
-                  style={{ width: `${goal.progress}%` }}
-                />
-              </div>
+
+              <button
+                onClick={() => handleToggleGoal(goal.id, goal.status)}
+                disabled={isUpdating}
+                className={`p-2.5 rounded-xl border transition-all shrink-0 ${
+                  isCompleted
+                    ? 'bg-emerald-500 text-slate-950 border-emerald-400'
+                    : 'bg-[#141724] border-[#22273a] text-slate-400 hover:text-white hover:border-slate-500'
+                }`}
+              >
+                {isCompleted ? (
+                  <CheckCircle2 className="w-5 h-5" />
+                ) : (
+                  <Circle className="w-5 h-5" />
+                )}
+              </button>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
