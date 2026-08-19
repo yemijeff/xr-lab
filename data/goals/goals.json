@@ -3,9 +3,9 @@
     "id": "goal-01",
     "title": "Complete Stage 01 XR Foundations & Log Initial Experiments",
     "type": "stage",
-    "status": "completed",
+    "status": "not_started",
     "targetDate": "2026-09-01",
-    "progress": 100,
+    "progress": 0,
     "measurableOutcome": "Produce documented experiments in Unity/WebXR on 6DoF, comfort zones, and spatial anchors.",
     "relatedStage": "01-xr-foundations"
   },
