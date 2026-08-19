@@ -3,30 +3,30 @@
     "id": "sk-spatial-ux",
     "name": "Spatial UX & Layout",
     "category": "Spatial UX",
-    "level": 2,
+    "level": 1,
     "targetLevel": 5,
-    "confidence": 3,
-    "lastPracticed": "2026-08-15",
+    "confidence": 1,
+    "lastPracticed": "Not started yet",
     "description": "Structuring UI hierarchy, ergonomic depth planes, and comfortable viewing zones in 3D volumes."
   },
   {
     "id": "sk-xr-interaction",
     "name": "Multimodal XR Interaction",
     "category": "Interaction",
-    "level": 2,
+    "level": 1,
     "targetLevel": 4,
-    "confidence": 2,
-    "lastPracticed": "2026-08-14",
+    "confidence": 1,
+    "lastPracticed": "Not started yet",
     "description": "Designing intuitive gaze-and-pinch, direct touch, and raycasting interaction models."
   },
   {
     "id": "sk-spatial-ergonomics",
     "name": "Spatial Ergonomics & Comfort",
     "category": "Spatial UX",
-    "level": 3,
+    "level": 1,
     "targetLevel": 5,
-    "confidence": 4,
-    "lastPracticed": "2026-08-15",
+    "confidence": 1,
+    "lastPracticed": "Not started yet",
     "description": "Preventing neck strain, arm fatigue (Gorilla Arm), and cybersickness through human-centered spatial metrics."
   },
   {
@@ -36,7 +36,7 @@
     "level": 1,
     "targetLevel": 3,
     "confidence": 1,
-    "lastPracticed": "2026-08-10",
+    "lastPracticed": "Not started yet",
     "description": "Creating low-poly assets, spatial UI geometry, and optimized models for real-time engines."
   },
   {
@@ -46,17 +46,17 @@
     "level": 1,
     "targetLevel": 4,
     "confidence": 1,
-    "lastPracticed": "2026-08-08",
+    "lastPracticed": "Not started yet",
     "description": "Assembling interactive spatial prototypes, physics triggers, and VR/MR controller/hand tracking logic."
   },
   {
     "id": "sk-spatial-research",
     "name": "Spatial UX Research & Usability",
     "category": "Research",
-    "level": 3,
+    "level": 1,
     "targetLevel": 5,
-    "confidence": 4,
-    "lastPracticed": "2026-08-15",
+    "confidence": 1,
+    "lastPracticed": "Not started yet",
     "description": "Conducting qualitative testing in headset, analyzing cognitive load, and evaluating spatial mental models."
   }
 ]

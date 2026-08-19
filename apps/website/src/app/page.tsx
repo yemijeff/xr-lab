@@ -101,37 +101,47 @@ export default function PublicHomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.slice(0, 2).map((prj) => (
-            <Link
-              key={prj.slug}
-              href={`/projects/${prj.slug}`}
-              className="group p-6 rounded-2xl bg-[#0d0f17] border border-[#1c202d] hover:border-indigo-500/40 transition-all space-y-4 flex flex-col justify-between"
-            >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between text-xs font-mono text-slate-500">
-                  <span className="px-2.5 py-0.5 rounded text-[10px] bg-indigo-950/50 text-indigo-300 border border-indigo-800/40">
-                    CASE STUDY
-                  </span>
-                  <span>{prj.frontmatter.date}</span>
+        {projects.length === 0 ? (
+          <div className="p-8 rounded-2xl bg-[#0d0f17] border border-[#1c202d] text-center space-y-2">
+            <FolderGit2 className="w-6 h-6 text-indigo-400 mx-auto" />
+            <h3 className="text-xs font-semibold text-slate-300">Spatial Case Studies in Progress</h3>
+            <p className="text-[11px] text-slate-500 max-w-sm mx-auto">
+              Comprehensive case studies will be published here as full XR product prototypes are completed.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {projects.slice(0, 2).map((prj) => (
+              <Link
+                key={prj.slug}
+                href={`/projects/${prj.slug}`}
+                className="group p-6 rounded-2xl bg-[#0d0f17] border border-[#1c202d] hover:border-indigo-500/40 transition-all space-y-4 flex flex-col justify-between"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between text-xs font-mono text-slate-500">
+                    <span className="px-2.5 py-0.5 rounded text-[10px] bg-indigo-950/50 text-indigo-300 border border-indigo-800/40">
+                      CASE STUDY
+                    </span>
+                    <span>{prj.frontmatter.date}</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-white group-hover:text-indigo-300 transition-colors">
+                    {prj.frontmatter.title}
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed line-clamp-3">
+                    {prj.frontmatter.summary}
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold text-white group-hover:text-indigo-300 transition-colors">
-                  {prj.frontmatter.title}
-                </h3>
-                <p className="text-xs text-slate-400 leading-relaxed line-clamp-3">
-                  {prj.frontmatter.summary}
-                </p>
-              </div>
 
-              <div className="pt-4 border-t border-[#181b26] flex items-center justify-between text-xs font-mono text-slate-500">
-                <span>Tools: {prj.frontmatter.tools?.join(', ') || 'Figma, Unity'}</span>
-                <span className="text-indigo-400 group-hover:translate-x-0.5 transition-transform">
-                  Read Case Study ↗
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
+                <div className="pt-4 border-t border-[#181b26] flex items-center justify-between text-xs font-mono text-slate-500">
+                  <span>Tools: {prj.frontmatter.tools?.join(', ') || 'Figma, Unity'}</span>
+                  <span className="text-indigo-400 group-hover:translate-x-0.5 transition-transform">
+                    Read Case Study ↗
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* 3. Documented Experiments */}
@@ -151,41 +161,51 @@ export default function PublicHomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {experiments.slice(0, 2).map((exp) => (
-            <Link
-              key={exp.slug}
-              href={`/experiments/${exp.slug}`}
-              className="group p-6 rounded-2xl bg-[#0d0f17] border border-[#1c202d] hover:border-purple-500/40 transition-all space-y-4"
-            >
-              <div className="flex items-center justify-between text-xs font-mono text-slate-500">
-                <span className="px-2.5 py-0.5 rounded text-[10px] bg-purple-950/50 text-purple-300 border border-purple-800/40">
-                  {exp.frontmatter.id.toUpperCase()}
-                </span>
-                <span>{exp.frontmatter.date}</span>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors">
-                  {exp.frontmatter.title}
-                </h3>
-                {exp.frontmatter.question && (
-                  <p className="text-xs text-slate-400 mt-2 line-clamp-2">
-                    <strong className="text-purple-400 font-mono">Q: </strong>
-                    {exp.frontmatter.question}
-                  </p>
-                )}
-              </div>
-
-              {exp.frontmatter.result && (
-                <div className="p-3 rounded-xl bg-[#131622] border border-[#1e2336] text-xs text-slate-300 line-clamp-2">
-                  <span className="text-emerald-400 font-mono font-medium">Result: </span>
-                  {exp.frontmatter.result}
+        {experiments.length === 0 ? (
+          <div className="p-8 rounded-2xl bg-[#0d0f17] border border-[#1c202d] text-center space-y-2">
+            <FlaskConical className="w-6 h-6 text-purple-400 mx-auto" />
+            <h3 className="text-xs font-semibold text-slate-300">New Experiments in Laboratory</h3>
+            <p className="text-[11px] text-slate-500 max-w-sm mx-auto">
+              Documented tests on 6DoF, spatial depth planes, and comfort zones will publish here.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {experiments.slice(0, 2).map((exp) => (
+              <Link
+                key={exp.slug}
+                href={`/experiments/${exp.slug}`}
+                className="group p-6 rounded-2xl bg-[#0d0f17] border border-[#1c202d] hover:border-purple-500/40 transition-all space-y-4"
+              >
+                <div className="flex items-center justify-between text-xs font-mono text-slate-500">
+                  <span className="px-2.5 py-0.5 rounded text-[10px] bg-purple-950/50 text-purple-300 border border-purple-800/40">
+                    {exp.frontmatter.id.toUpperCase()}
+                  </span>
+                  <span>{exp.frontmatter.date}</span>
                 </div>
-              )}
-            </Link>
-          ))}
-        </div>
+
+                <div>
+                  <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors">
+                    {exp.frontmatter.title}
+                  </h3>
+                  {exp.frontmatter.question && (
+                    <p className="text-xs text-slate-400 mt-2 line-clamp-2">
+                      <strong className="text-purple-400 font-mono">Q: </strong>
+                      {exp.frontmatter.question}
+                    </p>
+                  )}
+                </div>
+
+                {exp.frontmatter.result && (
+                  <div className="p-3 rounded-xl bg-[#131622] border border-[#1e2336] text-xs text-slate-300 line-clamp-2">
+                    <span className="text-emerald-400 font-mono font-medium">Result: </span>
+                    {exp.frontmatter.result}
+                  </div>
+                )}
+              </Link>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* 4. Latest Journal Reflections & Principles */}
@@ -208,24 +228,32 @@ export default function PublicHomePage() {
           </div>
 
           <div className="space-y-4">
-            {journals.slice(0, 3).map((jrn) => (
-              <Link
-                key={jrn.slug}
-                href={`/journal/${jrn.slug}`}
-                className="block p-5 rounded-2xl bg-[#0d0f17] border border-[#1c202d] hover:border-emerald-500/30 transition-all space-y-2 group"
-              >
-                <div className="flex items-center justify-between text-[11px] font-mono text-slate-500">
-                  <span className="text-emerald-400">{jrn.frontmatter.type?.toUpperCase()}</span>
-                  <span>{jrn.frontmatter.date}</span>
-                </div>
-                <h4 className="text-sm font-semibold text-slate-100 group-hover:text-emerald-300 transition-colors">
-                  {jrn.frontmatter.title}
-                </h4>
-                <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                  {jrn.frontmatter.summary}
-                </p>
-              </Link>
-            ))}
+            {journals.length === 0 ? (
+              <div className="p-6 rounded-2xl bg-[#0d0f17] border border-[#1c202d] text-center space-y-1.5">
+                <BookOpen className="w-5 h-5 text-emerald-400 mx-auto" />
+                <h4 className="text-xs font-semibold text-slate-300">Journal entries being written</h4>
+                <p className="text-[11px] text-slate-500">First reflections will appear here once published.</p>
+              </div>
+            ) : (
+              journals.slice(0, 3).map((jrn) => (
+                <Link
+                  key={jrn.slug}
+                  href={`/journal/${jrn.slug}`}
+                  className="block p-5 rounded-2xl bg-[#0d0f17] border border-[#1c202d] hover:border-emerald-500/30 transition-all space-y-2 group"
+                >
+                  <div className="flex items-center justify-between text-[11px] font-mono text-slate-500">
+                    <span className="text-emerald-400">{jrn.frontmatter.type?.toUpperCase()}</span>
+                    <span>{jrn.frontmatter.date}</span>
+                  </div>
+                  <h4 className="text-sm font-semibold text-slate-100 group-hover:text-emerald-300 transition-colors">
+                    {jrn.frontmatter.title}
+                  </h4>
+                  <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                    {jrn.frontmatter.summary}
+                  </p>
+                </Link>
+              ))
+            )}
           </div>
         </section>
 
@@ -247,22 +275,30 @@ export default function PublicHomePage() {
           </div>
 
           <div className="space-y-4">
-            {principles.slice(0, 3).map((prin) => (
-              <div
-                key={prin.slug}
-                className="p-5 rounded-2xl bg-[#0d0f17] border border-[#1c202d] space-y-2"
-              >
-                <div className="text-[10px] font-mono text-amber-400 font-semibold uppercase">
-                  {prin.frontmatter.id.toUpperCase()} // CONFIDENCE: {prin.frontmatter.confidence}/5
-                </div>
-                <h4 className="text-sm font-semibold text-slate-100">
-                  &quot;{prin.frontmatter.title}&quot;
-                </h4>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  {prin.frontmatter.statement}
-                </p>
+            {principles.length === 0 ? (
+              <div className="p-6 rounded-2xl bg-[#0d0f17] border border-[#1c202d] text-center space-y-1.5">
+                <Lightbulb className="w-5 h-5 text-amber-400 mx-auto" />
+                <h4 className="text-xs font-semibold text-slate-300">Spatial Principles Evolving</h4>
+                <p className="text-[11px] text-slate-500">Principles will crystallize through prototype testing.</p>
               </div>
-            ))}
+            ) : (
+              principles.slice(0, 3).map((prin) => (
+                <div
+                  key={prin.slug}
+                  className="p-5 rounded-2xl bg-[#0d0f17] border border-[#1c202d] space-y-2"
+                >
+                  <div className="text-[10px] font-mono text-amber-400 font-semibold uppercase">
+                    {prin.frontmatter.id.toUpperCase()} // CONFIDENCE: {prin.frontmatter.confidence}/5
+                  </div>
+                  <h4 className="text-sm font-semibold text-slate-100">
+                    &quot;{prin.frontmatter.title}&quot;
+                  </h4>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    {prin.frontmatter.statement}
+                  </p>
+                </div>
+              ))
+            )}
           </div>
         </section>
       </div>

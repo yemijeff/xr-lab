@@ -216,30 +216,48 @@ export default function DashboardOverviewPage() {
           </div>
 
           <div className="space-y-3">
-            {learningLogs.slice(0, 3).map((log) => (
-              <div
-                key={log.id}
-                className="p-4 rounded-xl bg-[#0f111a] border border-[#1e2230] hover:border-[#2a3045] transition-colors space-y-2.5"
-              >
-                <div className="flex items-center justify-between text-xs">
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-sky-500/10 text-sky-300 border border-sky-500/20">
-                    {log.stageName}
-                  </span>
-                  <span className="text-slate-500 text-[11px] font-mono flex items-center gap-1">
-                    <Calendar className="w-3 h-3" /> {log.date}
-                  </span>
+            {learningLogs.length === 0 ? (
+              <div className="p-8 rounded-2xl bg-[#0f111a] border border-[#1e2230] text-center space-y-3">
+                <Sparkles className="w-6 h-6 text-sky-400 mx-auto" />
+                <div className="space-y-1">
+                  <h4 className="text-xs font-semibold text-slate-200">No learning sessions logged yet</h4>
+                  <p className="text-[11px] text-slate-500">Your journey starts here. Record what you explore today!</p>
                 </div>
-                <h4 className="text-xs font-semibold text-slate-100">{log.topic}</h4>
-                <p className="text-xs text-slate-400 leading-relaxed line-clamp-2">
-                  {log.notes}
-                </p>
-                {log.takeaway && (
-                  <div className="p-2 rounded-lg bg-[#141724] border border-[#202538] text-[11px] text-sky-300 font-mono">
-                    💡 <span className="text-slate-300 font-sans">{log.takeaway}</span>
-                  </div>
-                )}
+                <div className="pt-1">
+                  <Link
+                    href="/learning"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-medium transition-colors"
+                  >
+                    + Log Day 1 Session
+                  </Link>
+                </div>
               </div>
-            ))}
+            ) : (
+              learningLogs.slice(0, 3).map((log) => (
+                <div
+                  key={log.id}
+                  className="p-4 rounded-xl bg-[#0f111a] border border-[#1e2230] hover:border-[#2a3045] transition-colors space-y-2.5"
+                >
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-sky-500/10 text-sky-300 border border-sky-500/20">
+                      {log.stageName}
+                    </span>
+                    <span className="text-slate-500 text-[11px] font-mono flex items-center gap-1">
+                      <Calendar className="w-3 h-3" /> {log.date}
+                    </span>
+                  </div>
+                  <h4 className="text-xs font-semibold text-slate-100">{log.topic}</h4>
+                  <p className="text-xs text-slate-400 leading-relaxed line-clamp-2">
+                    {log.notes}
+                  </p>
+                  {log.takeaway && (
+                    <div className="p-2 rounded-lg bg-[#141724] border border-[#202538] text-[11px] text-sky-300 font-mono">
+                      💡 <span className="text-slate-300 font-sans">{log.takeaway}</span>
+                    </div>
+                  )}
+                </div>
+              ))
+            )}
           </div>
         </div>
 
@@ -261,33 +279,51 @@ export default function DashboardOverviewPage() {
           </div>
 
           <div className="space-y-3">
-            {journalEntries.slice(0, 3).map((entry) => (
-              <div
-                key={entry.slug}
-                className="p-4 rounded-xl bg-[#0f111a] border border-[#1e2230] hover:border-[#2a3045] transition-colors space-y-2.5"
-              >
-                <div className="flex items-center justify-between text-xs">
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950/50 text-emerald-400 border border-emerald-800/40">
-                    <CheckCircle2 className="w-3 h-3" /> {entry.frontmatter.status.toUpperCase()}
-                  </span>
-                  <span className="text-slate-500 text-[11px] font-mono">{entry.frontmatter.date}</span>
+            {journalEntries.length === 0 ? (
+              <div className="p-8 rounded-2xl bg-[#0f111a] border border-[#1e2230] text-center space-y-3">
+                <BookOpen className="w-6 h-6 text-emerald-400 mx-auto" />
+                <div className="space-y-1">
+                  <h4 className="text-xs font-semibold text-slate-200">No reflections written yet</h4>
+                  <p className="text-[11px] text-slate-500">Document your thoughts, discoveries, or failed assumptions.</p>
                 </div>
-                <h4 className="text-xs font-semibold text-slate-100">{entry.frontmatter.title}</h4>
-                <p className="text-xs text-slate-400 leading-relaxed line-clamp-2">
-                  {entry.frontmatter.summary}
-                </p>
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  {entry.frontmatter.tags?.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-[#141724] text-slate-400 border border-[#22273a]"
-                    >
-                      #{tag}
-                    </span>
-                  ))}
+                <div className="pt-1">
+                  <Link
+                    href="/journal"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#141724] hover:bg-[#1c2134] text-slate-300 border border-[#24283b] text-xs font-medium transition-colors"
+                  >
+                    Write First Reflection
+                  </Link>
                 </div>
               </div>
-            ))}
+            ) : (
+              journalEntries.slice(0, 3).map((entry) => (
+                <div
+                  key={entry.slug}
+                  className="p-4 rounded-xl bg-[#0f111a] border border-[#1e2230] hover:border-[#2a3045] transition-colors space-y-2.5"
+                >
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950/50 text-emerald-400 border border-emerald-800/40">
+                      <CheckCircle2 className="w-3 h-3" /> {entry.frontmatter.status.toUpperCase()}
+                    </span>
+                    <span className="text-slate-500 text-[11px] font-mono">{entry.frontmatter.date}</span>
+                  </div>
+                  <h4 className="text-xs font-semibold text-slate-100">{entry.frontmatter.title}</h4>
+                  <p className="text-xs text-slate-400 leading-relaxed line-clamp-2">
+                    {entry.frontmatter.summary}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {entry.frontmatter.tags?.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-[#141724] text-slate-400 border border-[#22273a]"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>
