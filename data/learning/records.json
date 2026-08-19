@@ -1,5 +1,22 @@
 [
   {
+    "id": "lrn-20260819-3521",
+    "date": "2026-08-19",
+    "stageId": "stage-01",
+    "stageName": "01 — XR Foundations",
+    "topic": "Immersive App Deconstructions and UI/UX Teardowns",
+    "durationMinutes": 105,
+    "confidence": 5,
+    "difficulty": "medium",
+    "notes": "1. Critique Framework\nEvaluate immersive apps across three main vectors: how they interact with physical space, their physical ergonomics, and their implementation of multimodal inputs like eyes, hands, and controllers.\n\n2. Key Definitions\nOcclusion: When digital objects are realistically hidden by physical objects like tables or chairs.\nBillboarding: Virtual panels rotating to constantly face the user for legibility from any angle.\nHUDs: Heads-up displays. Avoid head-locked content to prevent rapid eye strain. Use world-locked anchors or smoothing animations instead.\nLocomotion: Avoid teleportation in passthrough mixed reality to keep the user oriented. Use gradual fade transitions instead.\n\n3. Platform Case Studies\nShapesXR: Offers intuitive 3D modeling, but causes arm fatigue and panel clutter.\nVision Pro: Gaze-and-pinch is low-effort, but looking around triggers accidental selections and has a narrow visual sweet spot.\nImmersed VR: Curved virtual displays minimize eye strain, but typing triggers accidental hand-tracking inputs and screens can drift.\n\n4. Universal Design Rules\nBegin with physical metaphors so users do not have to relearn basic interactions, then add magical spatial abilities. Design for both sitting and standing users, and provide alternative layouts since you cannot control the physical room of the user.",
+    "takeaway": "1. Ground Spatial Design in Physical Metaphors, then Extend Beyond Them: Start by anchoring your immersive design in familiar physical situations so users do not have to relearn basic interactions. For example, ensure buttons can be pressed intuitively and virtual objects align realistically with surfaces and do not fall through walls. Once these core mechanics are established, eliminate physical constraints to introduce magical capabilities, such as summoning remote objects from a distance or bringing remote team members into a shared virtual workspace.  2. Prioritize Physical Ergonomics to Prevent Gorilla Arm: Prolonged direct manipulation and precision translation of 3D objects in mid-air quickly leads to severe muscle fatigue. To safeguard comfort, support low-strain inputs like gaze-and-pinch, position UI panels slightly below the user's direct line of sight, and design indirect interactions that allow users to comfortably select and manipulate items from a rested, seated, or standing position.  3. Minimize and Avoid Head-Locked HUDs: Displaying interface elements locked directly to the user's head movement in passthrough mixed reality quickly causes severe eye fatigue and degrades usability. Instead of head-locking HUD style content, anchor digital menus directly to physical space or use smoothing animations that let UI panels loosely follow the user at a comfortable depth.  4. Do Not Use Teleportation in Passthrough MR: Unlike fully immersive VR environments, users in passthrough mixed reality cannot be physically teleported. Attempting to teleport users or virtual content in passthrough mode breaks spatial orientation and conflicts with their real physical surroundings. Apps should utilize gradual transitions, like fade animations, when switching between physical and virtual environmental modes.  5. Ensure Experiences are Spatially Responsive and Safe: Because you have no control over the size, layout, or furniture of a user's real room, you must design for a minimally viable environment. Always build alternative placement options in case physical surfaces like tables or sofas are missing, and ensure virtual content never obscures real-world obstacles that could lead to physical collision or injury.  I can also convert this entire Day 2 logbook entry into a downloadable plain text (.txt) file if you want to export it directly to your system.",
+    "resources": [
+      "Google Gemini",
+      "Meta",
+      "Youtube"
+    ]
+  },
+  {
     "id": "lrn-20260818-5036",
     "date": "2026-08-18",
     "stageId": "stage-01",
