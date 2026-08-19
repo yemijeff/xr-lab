@@ -5,12 +5,12 @@
     "title": "XR Foundations",
     "tagline": "Understanding the physical, perceptual, and spatial realities of immersive technology.",
     "status": "in_progress",
-    "progress": 14,
+    "progress": 0,
     "topics": [
       {
         "id": "top-01-01",
         "name": "VR, AR, MR & Spatial Computing Definitions",
-        "status": "mastered"
+        "status": "not_started"
       },
       {
         "id": "top-01-02",
