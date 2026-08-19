@@ -1,5 +1,22 @@
 [
   {
+    "id": "lrn-20260819-5561",
+    "date": "2026-08-19",
+    "stageId": "stage-01",
+    "stageName": "01 — XR Foundations",
+    "topic": "Comparative Matrix: 2D UI vs. Spatial UI",
+    "durationMinutes": 120,
+    "confidence": 5,
+    "difficulty": "medium",
+    "notes": "Designing for spatial computing represents a major paradigm shift from screen-bound 2D interfaces to infinite, volumetric spaces. While 2D UI is restricted to rigid viewports with fixed aspect ratios and pixel-based hierarchies, Spatial UI leverages physical depth, scale, stereo disparity, occlusion, and real environmental physics. This allows digital content to blend with a user's physical surroundings.\n\nAccording to the provided sources, successful spatial design relies on five primary pillars:\n\n1. Ergonomic Constraints and Human Comfort: Designers must respect human biology. Because the human field of view is naturally wider than it is tall, interfaces should prioritize landscape layouts and keep critical elements centered to minimize eye and neck strain. To maintain physical comfort, spatial systems should bring content to the user rather than forcing them to move, allowing them to remain at rest.\n\n2. Interaction Modalities and Distance: Interaction moves beyond physical screens to include eyes, hands, gestures, voice, and controllers. Distance dictates input modes: direct physical touch is reserved for close-range objects typically under 46 to 50 centimeters, while indirect inputs like eye gaze and pinches are utilized for distances greater than 1.0 meter.\n\n3. The Immersion Spectrum: Digital experiences can dynamically scale their presence. Experiences should generally start as approachable, flat windows in a Shared Space alongside other applications before transitioning to a Full Space that temporarily dims or replaces physical surroundings to optimize focus.\n\n4. Preventing Spatial Confusion: Merging 2D panels into 3D scenes introduces unique spatial problems. Role confusion occurs when a user cannot distinguish between a 3D object that must be directly grabbed and a 2D menu panel that requires raycasting or pinches. Similarly, placing UI at an awkward middle distance of 0.5 meters to 0.8 meters makes users reach for panels they cannot physically grasp.\n\n5. Legibility and Pacing: Text and complex UI elements perform best when kept flat and 2D, as 3D text is disorienting and difficult to read. Furthermore, because active physical interaction is exhausting, spatial experiences must thoughtfully pace interactions, alternating high-intensity sequences with restful, passive intervals.",
+    "takeaway": "To design successful spatial experiences, creators must prioritize physical comfort by centering content in the natural line of sight, avoid placing panels in the awkward 0.5-to-0.8-meter middle distance by positioning them under 46 centimeters for direct touch or beyond 1 meter for raycasting, and use distinct feedback to separate grabbable 3D objects from clickable menus.",
+    "resources": [
+      "Apple HIG",
+      "Meta Horizon",
+      "Google Gemini"
+    ]
+  },
+  {
     "id": "lrn-20260819-3521",
     "date": "2026-08-19",
     "stageId": "stage-01",
