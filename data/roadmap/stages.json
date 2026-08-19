@@ -5,7 +5,7 @@
     "title": "XR Foundations",
     "tagline": "Understanding the physical, perceptual, and spatial realities of immersive technology.",
     "status": "in_progress",
-    "progress": 14,
+    "progress": 29,
     "topics": [
       {
         "id": "top-01-01",
@@ -25,7 +25,7 @@
       {
         "id": "top-01-04",
         "name": "Passthrough & Spatial Anchors",
-        "status": "practicing"
+        "status": "understood"
       },
       {
         "id": "top-01-05",
