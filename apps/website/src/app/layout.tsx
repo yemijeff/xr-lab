@@ -4,8 +4,33 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
-  title: 'XR Lab — Spatial Design Portfolio & Journey',
-  description: 'A personal research lab documenting the journey from Product Designer to Spatial Designer.',
+  title: 'XR Lab — Spatial Design Portfolio & Research Archive',
+  description: 'Documenting the transition from Product Designer to Spatial Designer — exploring what happens when interfaces leave the screen.',
+  keywords: [
+    'Spatial Design',
+    'XR Design',
+    'Virtual Reality UX',
+    'Augmented Reality UI',
+    'Spatial Computing',
+    'Interaction Design',
+    'Product Design to XR',
+  ],
+  authors: [{ name: 'Adeyemi Jeff', url: 'https://xr-lab.vercel.app' }],
+  creator: 'Adeyemi Jeff',
+  openGraph: {
+    title: 'XR Lab — Spatial Design Portfolio & Research Archive',
+    description: 'Documenting the transition from Product Designer to Spatial Designer — prototypes, reflections, and spatial principles.',
+    url: 'https://xr-lab.vercel.app',
+    siteName: 'XR Lab',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'XR Lab — Spatial Design Research & Portfolio',
+    description: 'Documenting the transition from Product Designer to Spatial Designer.',
+    creator: '@yemijeff',
+  },
 };
 
 export default function RootLayout({

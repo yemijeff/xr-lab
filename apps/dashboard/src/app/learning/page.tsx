@@ -1,14 +1,16 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { BookOpen, Plus, Calendar, Clock, Sparkles, Filter } from 'lucide-react';
+import { BookOpen, Plus, Calendar, Clock, Sparkles, Filter, Share2 } from 'lucide-react';
 import { LearningRecord } from '@xrlab/types';
 import { LogLearningModal } from '@/components/learning/LogModal';
+import { ShareSnippetModal } from '@/components/social/ShareSnippetModal';
 
 export default function LearningLogsPage() {
   const [logs, setLogs] = useState<LearningRecord[]>([]);
   const [filterStage, setFilterStage] = useState('all');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [sharingRecord, setSharingRecord] = useState<LearningRecord | null>(null);
   const [loading, setLoading] = useState(true);
 
   const fetchLogs = async () => {
@@ -92,7 +94,7 @@ export default function LearningLogsPage() {
           {filteredLogs.map((log) => (
             <div
               key={log.id}
-              className="p-5 rounded-2xl bg-[#0f111a] border border-[#1e2230] hover:border-[#252b40] transition-colors space-y-3"
+              className="p-5 rounded-2xl bg-[#0f111a] border border-[#1e2230] hover:border-[#252b40] transition-colors space-y-3 shadow-lg"
             >
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
@@ -119,7 +121,7 @@ export default function LearningLogsPage() {
 
               <div>
                 <h3 className="text-sm font-semibold text-white">{log.topic}</h3>
-                <p className="text-xs text-slate-300 mt-1.5 leading-relaxed">{log.notes}</p>
+                <p className="text-xs text-slate-300 mt-1.5 leading-relaxed whitespace-pre-wrap">{log.notes}</p>
               </div>
 
               {log.takeaway && (
@@ -129,16 +131,28 @@ export default function LearningLogsPage() {
                 </div>
               )}
 
-              {log.resources && log.resources.length > 0 && (
-                <div className="pt-2 flex flex-wrap items-center gap-2 text-[10px] font-mono text-slate-500">
-                  <span>References:</span>
-                  {log.resources.map((res, i) => (
-                    <span key={i} className="px-2 py-0.5 rounded bg-[#161926] text-slate-400 border border-[#22273a]">
-                      {res}
-                    </span>
-                  ))}
+              <div className="pt-2 border-t border-[#181b28] flex flex-wrap items-center justify-between gap-2">
+                <div className="flex flex-wrap items-center gap-2 text-[10px] font-mono text-slate-500">
+                  {log.resources && log.resources.length > 0 && (
+                    <>
+                      <span>References:</span>
+                      {log.resources.map((res, i) => (
+                        <span key={i} className="px-2 py-0.5 rounded bg-[#161926] text-slate-400 border border-[#22273a]">
+                          {res}
+                        </span>
+                      ))}
+                    </>
+                  )}
                 </div>
-              )}
+
+                <button
+                  onClick={() => setSharingRecord(log)}
+                  className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#141724] hover:bg-[#1e2336] text-sky-400 border border-[#24283b] text-xs font-mono transition-colors"
+                >
+                  <Share2 className="w-3 h-3" />
+                  <span>Share on LinkedIn / X</span>
+                </button>
+              </div>
             </div>
           ))}
         </div>
@@ -149,6 +163,14 @@ export default function LearningLogsPage() {
         <LogLearningModal
           onClose={() => setIsModalOpen(false)}
           onSuccess={fetchLogs}
+        />
+      )}
+
+      {/* Share Modal */}
+      {sharingRecord && (
+        <ShareSnippetModal
+          record={sharingRecord}
+          onClose={() => setSharingRecord(null)}
         />
       )}
     </div>

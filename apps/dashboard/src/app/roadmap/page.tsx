@@ -6,9 +6,8 @@ import {
   CheckCircle2,
   Circle,
   PlayCircle,
-  Sparkles,
-  ArrowRight,
   Flame,
+  ChevronDown,
 } from 'lucide-react';
 import { RoadmapStage } from '@xrlab/types';
 
@@ -35,23 +34,14 @@ export default function RoadmapPage() {
     fetchStages();
   }, []);
 
-  const handleToggleTopic = async (stageId: string, topicId: string, currentStatus: string) => {
-    const statusCycle: Record<string, string> = {
-      not_started: 'learning',
-      learning: 'practicing',
-      practicing: 'understood',
-      understood: 'mastered',
-      mastered: 'not_started',
-    };
-
-    const nextStatus = statusCycle[currentStatus] || 'learning';
+  const handleChangeStatus = async (stageId: string, topicId: string, newStatus: string) => {
     setUpdatingTopic(topicId);
 
     try {
       const res = await fetch('/api/roadmap', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ stageId, topicId, status: nextStatus }),
+        body: JSON.stringify({ stageId, topicId, status: newStatus }),
       });
       const data = await res.json();
       if (data.success) {
@@ -76,7 +66,7 @@ export default function RoadmapPage() {
           16-Week Spatial Roadmap
         </h1>
         <p className="text-slate-400 text-sm max-w-2xl leading-relaxed">
-          Click any topic to cycle its status (<code>Not Started</code> ➔ <code>Learning</code> ➔ <code>Practicing</code> ➔ <code>Understood</code> ➔ <code>Mastered</code>). Stage progress updates automatically!
+          Track your learning progression across each milestone. Use the dropdown on any topic to directly update your status. Stage completion updates automatically!
         </p>
       </div>
 
@@ -149,7 +139,7 @@ export default function RoadmapPage() {
                 </div>
               </div>
 
-              {/* Topics List */}
+              {/* Topics List with Dropdown Status Selector */}
               <div className="p-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {stage.topics.map((topic) => {
@@ -160,11 +150,9 @@ export default function RoadmapPage() {
                     const isUpdating = updatingTopic === topic.id;
 
                     return (
-                      <button
+                      <div
                         key={topic.id}
-                        onClick={() => handleToggleTopic(stage.id, topic.id, topic.status)}
-                        disabled={isUpdating}
-                        className={`p-3 rounded-xl border text-left flex items-center justify-between gap-3 transition-all ${
+                        className={`p-3.5 rounded-xl border flex items-center justify-between gap-3 transition-all ${
                           isMastered
                             ? 'bg-emerald-950/20 border-emerald-900/40 text-emerald-300'
                             : isUnderstood
@@ -173,10 +161,11 @@ export default function RoadmapPage() {
                             ? 'bg-purple-950/20 border-purple-900/40 text-purple-200'
                             : isLearning
                             ? 'bg-amber-950/20 border-amber-900/40 text-amber-200'
-                            : 'bg-[#12141e] border-[#1f2434] text-slate-400 hover:border-[#2e354a]'
+                            : 'bg-[#12141e] border-[#1f2434] text-slate-400'
                         }`}
                       >
-                        <div className="flex items-center gap-2.5 min-w-0">
+                        {/* Topic Icon & Name */}
+                        <div className="flex items-center gap-2.5 min-w-0 flex-1">
                           {isMastered ? (
                             <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                           ) : isUnderstood ? (
@@ -191,10 +180,33 @@ export default function RoadmapPage() {
                           <span className="text-xs font-medium truncate">{topic.name}</span>
                         </div>
 
-                        <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-black/40 border border-white/5 shrink-0">
-                          {isUpdating ? 'Saving...' : topic.status.replace('_', ' ')}
-                        </span>
-                      </button>
+                        {/* Status Select Dropdown */}
+                        <div className="relative shrink-0">
+                          <select
+                            value={topic.status}
+                            disabled={isUpdating}
+                            onChange={(e) => handleChangeStatus(stage.id, topic.id, e.target.value)}
+                            className={`appearance-none text-[10px] font-mono uppercase px-2.5 py-1 pr-6 rounded-lg bg-[#0a0c12] border cursor-pointer focus:outline-none transition-colors ${
+                              isMastered
+                                ? 'text-emerald-400 border-emerald-800/60'
+                                : isUnderstood
+                                ? 'text-sky-400 border-sky-800/60'
+                                : isPracticing
+                                ? 'text-purple-300 border-purple-800/60'
+                                : isLearning
+                                ? 'text-amber-300 border-amber-800/60'
+                                : 'text-slate-400 border-[#24283b] hover:border-slate-500'
+                            }`}
+                          >
+                            <option value="not_started">Not Started</option>
+                            <option value="learning">Learning</option>
+                            <option value="practicing">Practicing</option>
+                            <option value="understood">Understood</option>
+                            <option value="mastered">Mastered</option>
+                          </select>
+                          <ChevronDown className="w-3 h-3 text-slate-500 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
+                        </div>
+                      </div>
                     );
                   })}
                 </div>
