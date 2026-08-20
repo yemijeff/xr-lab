@@ -5,7 +5,7 @@
     "title": "XR Foundations",
     "tagline": "Understanding the physical, perceptual, and spatial realities of immersive technology.",
     "status": "in_progress",
-    "progress": 29,
+    "progress": 14,
     "topics": [
       {
         "id": "top-01-01",
@@ -15,7 +15,7 @@
       {
         "id": "top-01-02",
         "name": "3DoF vs 6DoF & Spatial Degrees of Freedom",
-        "status": "mastered"
+        "status": "not_started"
       },
       {
         "id": "top-01-03",
@@ -30,7 +30,7 @@
       {
         "id": "top-01-05",
         "name": "Field of View (FOV) & Visual Comfort",
-        "status": "not_started"
+        "status": "learning"
       },
       {
         "id": "top-01-06",
