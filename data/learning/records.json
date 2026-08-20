@@ -1,5 +1,21 @@
 [
   {
+    "id": "lrn-20260820-8730",
+    "date": "2026-08-20",
+    "stageId": "stage-01",
+    "stageName": "01 — XR Foundations",
+    "topic": "Core Concepts & Spatial Mechanics Breakdown",
+    "durationMinutes": 120,
+    "confidence": 5,
+    "difficulty": "medium",
+    "notes": "The sources outline the fundamental spatial mechanics, hardware systems, and user experience (UX) design rules that define virtual and augmented reality (XR).\n\n1. Degrees of Freedom: 3DoF vs. 6DoF\n* 3DoF (Three Degrees of Freedom): This tracks rotational movement only along three axes: Pitch (nodding up/down), Yaw (turning left/right), and Roll (tilting ear-to-shoulder). Because it ignores positional translation, virtual objects move with you if you lean or walk. It is measured using IMU sensors (gyroscope, accelerometer, magnetometer) and is best suited for seated, fixed-position experiences like 360-degree video viewers, TV remotes, or lightweight media glasses.\n* 6DoF (Six Degrees of Freedom): This tracks both rotation and position by adding translational movement along the X, Y, and Z axes: Surging (forward/backward), Strafing (left/right), and Elevating (up/down). This allows users to physically lean in, walk around virtual objects, and inspect 3D assets naturally. High-end devices like the Apple Vision Pro and Meta Quest utilize 6DoF to enable spatial computing, stable object anchoring, and accurate world mapping.\n\n2. Tracking Technology\n* Inside-Out Tracking: Rather than using external towers, modern headsets utilize outward-facing cameras, depth sensors, and IMUs mounted directly on the device.\n* Visual SLAM and LiDAR: Devices rely on Visual SLAM (Simultaneous Localization and Mapping) to track high-contrast environmental features and map physical boundaries. Technologies like LiDAR and other depth sensors help construct precise maps of a user's motion within a room.\n\n3. Human Factors and UX Design Rules\n* Field of View (FoV): Hardware FoV refers to the visible angular range through the lenses, typically 90 to 110 degrees horizontally. However, for optimal comfort, critical interactive elements must stay within the central 60-degree ergonomic cone of vision (30 degrees left/right, 15 degrees up/down) to prevent eye strain and repetitive neck movement.\n* Presence: This is the psychological sensation of feeling genuinely inside a virtual environment rather than just looking at a screen. Achieving presence requires a combination of stable 6DoF tracking, spatial audio, accurate lighting/occlusion, and low motion-to-photon latency of less than 20 milliseconds.\n* Design Considerations: Designers must tailor interfaces to the tracking capability. 6DoF interfaces must account for user depth, real-world surfaces, and viewing distance. In contrast, 3DoF interfaces should keep digital panels simple and fixed within a consistent viewing area with larger, more forgiving buttons.",
+    "takeaway": "1. 6DoF tracking is non-negotiable for true spatial immersion: While 3DoF works well for low-power, lightweight media glasses, 6DoF is the foundational technology required to anchor digital assets in physical space and prevent content from moving unrealistically with the user's head. 2. User comfort is a product of physics and ergonomics: Creating a believable sense of presence depends on keeping latency under 20ms, while avoiding user fatigue requires placing interactive UI elements strictly within the central 60-degree ergonomic cone of vision to minimize repetitive head rotation.",
+    "resources": [
+      "Google Gemini",
+      "Trace3d.app"
+    ]
+  },
+  {
     "id": "lrn-20260819-5561",
     "date": "2026-08-19",
     "stageId": "stage-01",
