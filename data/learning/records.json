@@ -1,5 +1,20 @@
 [
   {
+    "id": "lrn-20260824-8735",
+    "date": "2026-08-24",
+    "stageId": "stage-01",
+    "stageName": "01 — XR Foundations",
+    "topic": "Principles of Spatial Perception and Virtual Immersion",
+    "durationMinutes": 90,
+    "confidence": 3,
+    "difficulty": "medium",
+    "notes": "Summary:\nThe text explains how virtual reality systems transition technical hardware specs into a subjective feeling of psychological presence through place, plausibility, and embodiment illusions. Human depth perception relies on complex physiological, binocular, monocular, and dynamic motion cues, but mismatches between these inputs can cause severe cognitive friction and eye strain. To support accurate spatial reasoning and mental mapping, designers must calibrate the virtual world to the user's bodily scale and apply visual mitigations. These mitigations include placing key elements in a vergence sweet spot, eliminating artificial acceleration to prevent simulator sickness, and casting contact shadows to properly ground floating elements.",
+    "takeaway": "1. True psychological presence requires both the physical feeling of being in a space and the cognitive belief that the events occurring in that space are real and responsive. 2. Simulator sickness and eye fatigue can be mitigated by keeping interactive user interfaces in a 0.75 to 1.5 meter depth sweet spot, avoiding artificial camera acceleration, and utilizing contact shadows to clarify depth.",
+    "resources": [
+      "Google Gemini"
+    ]
+  },
+  {
     "id": "lrn-20260824-1764",
     "date": "2026-08-24",
     "stageId": "stage-01",
