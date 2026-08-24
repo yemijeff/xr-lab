@@ -1,5 +1,20 @@
 [
   {
+    "id": "lrn-20260824-1764",
+    "date": "2026-08-24",
+    "stageId": "stage-01",
+    "stageName": "01 — XR Foundations",
+    "topic": "The Pillars of Native Spatial Design",
+    "durationMinutes": 90,
+    "confidence": 4,
+    "difficulty": "medium",
+    "notes": "Summary\nA native Extended Reality (XR) experience dissolves the traditional digital screen, transitioning from two-dimensional information consumption to physical and three-dimensional interaction. True XR is built upon three main principles: environmental grounding, human anatomy ergonomics, and dynamic spatial presence. Environmental grounding ensures that digital objects interact naturally with the physical space by recognizing real-world geometry, casting shadows, and adjusting to lighting. Ergonomics uses biological viewports, centering core interactive elements within a comfortable 60-degree field of view to reduce fatigue, and organizing controls based on physical distance. Finally, spatial presence relies on minimalist layout density with progressive disclosure, low latency, and directional spatial audio to guide the user's focus naturally.",
+    "takeaway": "* True XR uses human anatomy and physical surroundings as its design canvas instead of just displaying flat screens in a headset. * Interaction is divided based on physical comfort, keeping main activities in a 60-degree comfort zone and separating close-up touch inputs from far-away gaze and gesture controls.",
+    "resources": [
+      "Google Gemini"
+    ]
+  },
+  {
     "id": "lrn-20260824-0664",
     "date": "2026-08-24",
     "stageId": "stage-01",
