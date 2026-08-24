@@ -1,5 +1,21 @@
 [
   {
+    "id": "lrn-20260824-0664",
+    "date": "2026-08-24",
+    "stageId": "stage-01",
+    "stageName": "01 — XR Foundations",
+    "topic": "Mastering the Onboarding Architecture of Spatial Computing",
+    "durationMinutes": 60,
+    "confidence": 4,
+    "difficulty": "medium",
+    "notes": "Summary of the spatial computing framework and experiences:\nThe materials outline a design framework built on three core analysis pillars: onboarding and spatial ramp-up, spatial layout and ergonomics, and presence and sensory feedback. This framework helps designers evaluate spatial computing experiences to prevent physical or mental strain while maintaining immersion. The framework is demonstrated through three specific mixed reality experiences: First Encounters on the Quest 3, which focuses on automated room-mesh onboarding and surface anchoring; Encounter Dinosaurs on the Apple Vision Pro, featuring gaze-driven onboarding and volumetric portal transitions; and Cubism on Quest and visionOS, which showcases zero-text onboarding, direct near-field micro-interactions, and ergonomic comfort. Together, these experiences show how hardware-specific paradigms are used to remove friction and anchor digital content naturally within a user's physical surroundings.",
+    "takeaway": "1. Successful spatial onboarding reduces cognitive overload and physical strain by using intuitive, natural interfaces like automated scans, eye gaze, or close-range direct touch instead of complex text menus. 2. True immersion and spatial presence require high-fidelity sensory feedback, including spatial audio, real-time depth cues, and highly responsive tactile loops to prevent vestibular mismatch.",
+    "resources": [
+      "Google Gemini",
+      "Youtube"
+    ]
+  },
+  {
     "id": "lrn-20260820-8730",
     "date": "2026-08-20",
     "stageId": "stage-01",
