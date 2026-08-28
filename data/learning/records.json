@@ -1,5 +1,20 @@
 [
   {
+    "id": "lrn-20260828-0909",
+    "date": "2026-08-28",
+    "stageId": "stage-01",
+    "stageName": "01 — XR Foundations",
+    "topic": "The Spatial Computing Input Modality Matrix",
+    "durationMinutes": 60,
+    "confidence": 4,
+    "difficulty": "medium",
+    "notes": "In today's study I explored how to design user experiences in spatial computing by balancing different input modalities against their physical and technical constraints. It analyzes five main inputs: eye tracking combined with pinch gestures, near-field direct touch, hand tracking with far-field raycasts, physical 6DoF controllers, and voice dictation. Each method has specific ergonomic costs and ideal use cases. To prevent user fatigue and accidental inputs, the document establishes rules for combining these modalities, such as using eye gaze to target but hand gestures to select, and automatically switching the input method based on how close or far a digital object is from the user.",
+    "takeaway": "1. No single input modality is perfect on its own, so designers must combine them to minimize physical fatigue. For example, combining visual targeting with a micro-pinch eliminates both unintended visual selections and arm fatigue. 2. Interaction methods should adapt dynamically based on distance. Direct touch is best for items within 0.5 meters to ensure natural interaction, while eye gaze and raycasting should be used for items farther than 0.8 meters to prevent arm strain.",
+    "resources": [
+      "Google Gemini"
+    ]
+  },
+  {
     "id": "lrn-20260828-9098",
     "date": "2026-08-28",
     "stageId": "stage-01",
