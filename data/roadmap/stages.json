@@ -5,7 +5,7 @@
     "title": "XR Foundations",
     "tagline": "Understanding the physical, perceptual, and spatial realities of immersive technology.",
     "status": "in_progress",
-    "progress": 43,
+    "progress": 57,
     "topics": [
       {
         "id": "top-01-01",
@@ -20,7 +20,7 @@
       {
         "id": "top-01-03",
         "name": "Head, Eye, and Hand Tracking Systems",
-        "status": "learning"
+        "status": "mastered"
       },
       {
         "id": "top-01-04",
