@@ -5,7 +5,7 @@
     "title": "XR Foundations",
     "tagline": "Understanding the physical, perceptual, and spatial realities of immersive technology.",
     "status": "in_progress",
-    "progress": 57,
+    "progress": 71,
     "topics": [
       {
         "id": "top-01-01",
@@ -35,7 +35,7 @@
       {
         "id": "top-01-06",
         "name": "Presence, Immersion & Motion Sickness / Cybersickness",
-        "status": "learning"
+        "status": "understood"
       },
       {
         "id": "top-01-07",
