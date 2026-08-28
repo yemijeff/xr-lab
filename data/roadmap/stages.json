@@ -4,8 +4,8 @@
     "number": "01",
     "title": "XR Foundations",
     "tagline": "Understanding the physical, perceptual, and spatial realities of immersive technology.",
-    "status": "in_progress",
-    "progress": 86,
+    "status": "completed",
+    "progress": 100,
     "topics": [
       {
         "id": "top-01-01",
@@ -40,7 +40,7 @@
       {
         "id": "top-01-07",
         "name": "Spatial Cognition & Mental Models",
-        "status": "learning"
+        "status": "understood"
       }
     ],
     "evidenceCount": 0
