@@ -1,5 +1,20 @@
 [
   {
+    "id": "lrn-20260828-8919",
+    "date": "2026-08-28",
+    "stageId": "stage-01",
+    "stageName": "01 — XR Foundations",
+    "topic": "Spatial Ergonomics and Motion Comfort Checklist",
+    "durationMinutes": 60,
+    "confidence": 5,
+    "difficulty": "medium",
+    "notes": "The checklist provides design guidelines to ensure comfort in spatial environments across four key areas: ocular comfort, motion sickness prevention, neck ergonomics, and arm ergonomics. For ocular comfort, primary interactive elements should sit between 1.0 and 2.0 meters away, and nothing should be closer than 0.5 meters to prevent eye strain and double vision. To avoid motion sickness, the virtual camera must lock 1:1 to physical head movements, and locomotion should default to snap turning or teleportation with instantaneous acceleration to minimize sensory mismatch. For neck ergonomics, core content should sit within a central 30-degree horizontal and plus/minus 15-degree vertical viewing cone, while UI panels should follow the user gently rather than being rigidly head-locked. Finally, to avoid muscle fatigue, high-frequency actions should rely on low-effort, far-field inputs like micro-pinch gestures or wrist-level raycasting rather than continuous mid-air direct-touch reach.",
+    "takeaway": "1. Spatial interfaces must respect natural physical and visual comfort boundaries by placing core interactive content within a central 30-degree viewing cone and at an optimal depth of 1.0 to 2.0 meters to prevent ocular strain and neck fatigue.  2. Designers can prevent motion sickness and arm fatigue by avoiding forced camera movements, defaulting to snap turning or teleportation, and designing low-effort micro-gestures that allow users to keep their hands resting comfortably.",
+    "resources": [
+      "Google Gemini"
+    ]
+  },
+  {
     "id": "lrn-20260824-8735",
     "date": "2026-08-24",
     "stageId": "stage-01",
