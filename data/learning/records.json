@@ -1,5 +1,20 @@
 [
   {
+    "id": "lrn-20260828-1344",
+    "date": "2026-08-28",
+    "stageId": "stage-01",
+    "stageName": "01 — XR Foundations",
+    "topic": "Spatial UX Analysis: Apple Notes on visionOS",
+    "durationMinutes": 60,
+    "confidence": 3,
+    "difficulty": "medium",
+    "notes": "The UX teardown of Apple Notes on visionOS evaluates how the 2D app functions in a 3D mixed-reality environment. The app earns a high overall spatial comfort score of 17.5 out of 20, excelling in eye comfort, motion stability, and low-fatigue navigation. Digital windows are placed at a comfortable natural depth to prevent eye strain, and adaptive glass backgrounds dynamically shift contrast to keep text highly legible under different real-world lighting conditions. Passive reading and navigation with eye tracking and hand gestures are effortless. However, the app falls short when it comes to long-form text entry, as typing on the mid-air virtual keyboard causes shoulder strain within a minute, and sensitive eye-gaze tracking can cause accidental tooltip popups when scanning dense lists. To fix these issues, the report recommends utilizing voice dictation or physical keyboards for longer entries, adding a brief delay before eye-dwell menus activate, and allowing notes to be permanently pinned to physical walls.",
+    "takeaway": "Key Takeaway 1: Ocular and navigation comfort are exemplary. Placing windows at natural focal distances and using eye-gaze and lap-resting micro-pinch gestures keeps eye strain, neck fatigue, and motion sickness near zero.  Key Takeaway 2: Mid-air virtual typing is highly fatiguing. Typing on the floating virtual keyboard for more than 60 seconds induces acute musculoskeletal shoulder strain, making external physical keyboards or voice input practically essential for productive writing.",
+    "resources": [
+      "Google Gemini"
+    ]
+  },
+  {
     "id": "lrn-20260828-0909",
     "date": "2026-08-28",
     "stageId": "stage-01",
