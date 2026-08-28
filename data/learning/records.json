@@ -1,5 +1,20 @@
 [
   {
+    "id": "lrn-20260828-9098",
+    "date": "2026-08-28",
+    "stageId": "stage-01",
+    "stageName": "01 — XR Foundations",
+    "topic": "Architectural Standards for Spatial Accessibility Audit",
+    "durationMinutes": 60,
+    "confidence": 4,
+    "difficulty": "medium",
+    "notes": "The spatial accessibility framework provides standards to make virtual and mixed reality environments accessible across three key areas: visual legibility, seated mobility, and motor abilities. It ensures text is legible against dynamic real-world backdrops by requiring minimum contrast ratios and dynamic background overlays. For seated or wheelchair users, it eliminates tasks requiring floor reaching, enforces a minimum knee-line threshold of 0.6 meters, and uses height calibration and quick-recentering features. Finally, to assist users with motor impairments, the framework establishes generous hitbox sizes, software smoothing to filter hand tremors, and single-handed or gaze-dwell input methods.",
+    "takeaway": "Key Takeaway 1: Spatial UI elements must be dynamically positioned and calibrated relative to the user's real-time physical posture, rather than anchored to fixed world heights, to prevent physical strain.  Key Takeaway 2: Input systems must support alternative activation methods like gaze-dwell, single-hand modes, and generous hitboxes to accommodate varying motor abilities and hand tremors.",
+    "resources": [
+      "Google Gemini"
+    ]
+  },
+  {
     "id": "lrn-20260828-8919",
     "date": "2026-08-28",
     "stageId": "stage-01",
