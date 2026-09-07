@@ -1,5 +1,20 @@
 [
   {
+    "id": "lrn-20260907-9550",
+    "date": "2026-09-07",
+    "stageId": "stage-02",
+    "stageName": "02 — Spatial UX",
+    "topic": "Spatial Interface Anchoring and Locking Modality Guide",
+    "durationMinutes": 60,
+    "confidence": 4,
+    "difficulty": "medium",
+    "notes": "Extended reality (XR) interfaces attach to physical reality using world-locked, body-locked, or head-locked coordinate anchoring, each of which heavily impacts user comfort. World-locked interfaces are fixed to physical space via SLAM or LiDAR, resulting in almost zero motion sickness because digital elements behave like real physical objects and align with the user's vestibular system. Body-locked interfaces move with the user's torso but remain stable during head rotations. To prevent jarring movements, these body-locked systems utilize spatial damping or lazy-follow mechanics with an inner deadband (typically within a plus or minus 15-degree threshold) where the interface stays stationary. Once a user's rotation exceeds this threshold, the interface smoothly catches up using an interpolation curve. Conversely, head-locked interfaces are pinned directly to the screen and move with every skull movement. This creates a severe conflict with the vestibular-ocular reflex because natural eye movements cause the interface to shift, triggering rapid eye fatigue and motion sickness. Head-locked designs are strictly limited to non-interactive, transient alerts that appear for less than 3 seconds.\n\nTo prototype these complex body-locked lazy-follow mechanics in 2D design tools, designers can construct a panoramic workspace in Figma. This setup utilizes a wide panoramic background frame to simulate physical space and a smaller, fixed viewport frame to represent the headset camera. Within the viewport, a centered deadband bounding box simulates the stable plus or minus 15-degree viewing zone where the UI remains still. When the user's simulated gaze shifts past this deadband into the peripheral catch-up zones, the UI is programmed to re-center. Designers utilize Figma interactive components and Smart Animate with custom spring-damping curves to replicate real-world spatial physics. This allows design teams to deliver precise implementation specifications to spatial engineers, including deadband angles, interpolation speeds, and damping times.",
+    "takeaway": "Takeaway 1: To prevent severe nausea and eye strain, designers must avoid using head-locked interfaces for interactive tasks and instead rely on world-locked or body-locked modalities with built-in lazy-follow damping.  Takeaway 2: Spatial lazy-follow interactions can be accurately prototyped in Figma using a panoramic canvas, a deadband bounding box, and interactive component state transitions driven by Smart Animate.",
+    "resources": [
+      "Google Gemini"
+    ]
+  },
+  {
     "id": "lrn-20260907-0726",
     "date": "2026-09-07",
     "stageId": "stage-02",
