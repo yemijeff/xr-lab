@@ -1,5 +1,20 @@
 [
   {
+    "id": "lrn-20260907-3932",
+    "date": "2026-09-07",
+    "stageId": "stage-02",
+    "stageName": "02 — Spatial UX",
+    "topic": "Spatial Hierarchy Breakdown",
+    "durationMinutes": 60,
+    "confidence": 4,
+    "difficulty": "medium",
+    "notes": "The spatial video streaming architecture organizes visual elements into a three-tier depth system to balance eye comfort, ergonomic usability, and environmental immersion. Tier 1, the primary layer, places the movie canvas and subtitles at a theater-scale depth of 2.5 to 5.0 meters directly in the user's central visual cone to prevent eye fatigue and neck strain. Tier 2, the secondary layer, positions interactive HUD controls and media drawers closer to the user at 1.0 to 1.4 meters and angled lower down, utilizing transparent glass materials and auto-fading to prevent cluttering the film. Tier 3, the ambient layer, operates passively beyond 6.0 meters to project real-time light spill onto the physical room and dim the surrounding environment by 70 to 90 percent during playback.",
+    "takeaway": "1. Depth-Based Separation Prevents Fatigue: By placing the primary screen far away in a central viewing cone and interactive controls closer and lower down, the design matches human vision mechanics and avoids visual or physical strain.  2. Passive Environmental Integration Drives Realism: Using automatic room dimming and dynamic light spill from the edges of the video screen grounds the digital media in the user's physical space, creating a natural theater atmosphere without manual setup.",
+    "resources": [
+      "Google Gemini"
+    ]
+  },
+  {
     "id": "lrn-20260828-1344",
     "date": "2026-08-28",
     "stageId": "stage-01",
