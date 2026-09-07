@@ -1,5 +1,20 @@
 [
   {
+    "id": "lrn-20260907-0726",
+    "date": "2026-09-07",
+    "stageId": "stage-02",
+    "stageName": "02 — Spatial UX",
+    "topic": "Architectural Foundations of Spatial UI Design",
+    "durationMinutes": 60,
+    "confidence": 4,
+    "difficulty": "medium",
+    "notes": "World-locked anchoring pins a digital object to fixed (X, Y, Z) coordinates in the physical room, such as a virtual dashboard on a physical brick wall or a 3D model on a coffee table. In contrast, body-locked or user-relative anchoring keeps the object relative to the user's torso or head position. Hard body-locking strictly pins the object to the user's field of view, which causes motion sickness and visual claustrophobia. Instead, a lazy-follow or soft tag-along behavior can be used, which smoothly moves the object behind the user using exponential dampening only after they turn or walk past an angular threshold of approximately fifteen to twenty degrees.",
+    "takeaway": "Takeaway 1: World-locking is ideal for persistent workspaces, ambient monitors, and localized spatial widgets that must remain pinned to specific physical locations.  Takeaway 2: Primary windows should avoid hard body-locking to prevent visual discomfort, relying instead on lazy-follow mechanics for comfortable user-relative movement.",
+    "resources": [
+      "Google Gemini"
+    ]
+  },
+  {
     "id": "lrn-20260907-4235",
     "date": "2026-09-07",
     "stageId": "stage-02",
