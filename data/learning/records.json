@@ -1,5 +1,20 @@
 [
   {
+    "id": "lrn-20260907-4235",
+    "date": "2026-09-07",
+    "stageId": "stage-02",
+    "stageName": "02 — Spatial UX",
+    "topic": "Spatial Design Standards for Immersive Interface Legibility",
+    "durationMinutes": 60,
+    "confidence": 3,
+    "difficulty": "medium",
+    "notes": "This technical framework standardizes how three-dimensional user interfaces scale and function across four major depth zones to prevent visual fatigue and ensure ergonomic interaction. The depth zones begin with the danger zone from 0.0 to 0.5 meters, which must remain clear of active interfaces to prevent eye strain and vergence-accommodation conflict. Next is the direct touch zone from 0.5 to 1.5 meters, where physical or controller-based touch interactions occur and body text must scale from 3.1 to 6.1 millimeters. The optimal vergence zone spans 1.5 to 5.0 meters, establishing 1.5 meters as the baseline comfort sweet spot for primary reading using gaze and micro-pinch input. Finally, the cinema or world zone at 5.0 meters and beyond is reserved for large-scale media canvases using remote control or look-to-aim input.\n\nTo maintain legibility, the guide establishes strict angular requirements where standard reading text must subtend at least 0.35 degrees of visual angle and critical alerts require at least 0.5 degrees. Interactive targets must scale with depth to ensure they subtend a minimum of 2.0 to 2.5 degrees of visual angle to buffer against hand tremors and eye tracking jitter. Productivity windows should default to spawning at exactly 1.5 meters and be angled backward by 10 to 15 degrees relative to the user's line of sight.",
+    "takeaway": "* First, the absolute sweet spot for spatial productivity layouts is 1.5 meters, which should be used as the default depth for pinning standard windows with a backward tilt of 10 to 15 degrees to optimize user comfort and eye vergence.  * Second, interface elements cannot remain static in size; body text and interactive targets must dynamically scale larger as they get further from the user to consistently meet visual angle minimums, specifically keeping buttons above 2.0 to 2.5 degrees of visual angle to combat input tremors.",
+    "resources": [
+      "Google Gemini"
+    ]
+  },
+  {
     "id": "lrn-20260907-3932",
     "date": "2026-09-07",
     "stageId": "stage-02",
