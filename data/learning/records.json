@@ -1,5 +1,21 @@
 [
   {
+    "id": "lrn-20260908-5127",
+    "date": "2026-09-08",
+    "stageId": "stage-02",
+    "stageName": "02 — Spatial UX",
+    "topic": "Architectures of Spatial Wayfinding and Navigational Design",
+    "durationMinutes": 60,
+    "confidence": 4,
+    "difficulty": "medium",
+    "notes": "The sources detail an accessibility-first, dual-channel spatial wayfinding architecture designed to guide users through 3D environments without causing visual clutter, head-lock disorientation, or cognitive fatigue. The system synchronizes visual guidance with 3D audio and tactile haptic feedback to ensure complete channel redundancy for users with sensory impairments. The visual markers are surface-locked to the floor plane and use a flattened 4:1 aspect ratio to simulate spatial perspective. These include a compass ring with an orbiting target pointer and ground breadcrumb chevrons that utilize progressive opacities of 100%, 80%, 55%, and 25% to represent distance. On the auditory channel, the system uses Head-Related Transfer Functions to emit directional acoustic pings between 800 Hz and 2.5 kHz, which is the optimal frequency band for human sound localization. \n\nThe navigation system is state-driven and scales dynamically based on user alignment and distance. In the acquisition phase, HRTF spatialized chimes pulse intermittently (every 1.2 seconds) to guide head rotation toward off-screen targets while the floor compass orbits to the target vector. Once the head rotates to align with the target, the pulse rate increases (every 0.6 seconds) and the progressive ground breadcrumb trail illuminates up to 4 meters ahead. Upon arrival within 1.5 meters, the audio mutes completely (0 dB) and the visual breadcrumbs dissolve with a gentle ease-out fade to prevent cognitive overload and double-focus fatigue, smoothly handing off focus to the primary interactive task interface.",
+    "takeaway": "Takeaway 1: Dual-channel sensory redundancy provides robust accessibility, automatically offering fallback modes such as directional controller rumbles for blind or severe low-vision users, and high-contrast visual compass overlays with high-scale chevrons for deaf, hard-of-hearing, or color-blind users.  Takeaway 2: A strict state-driven handoff logic prevents auditory and visual clutter by dynamically transitioning cues—such as muting spatial audio once the user's gaze is locked onto a target and fully dissolving ground-based trails within 1.5 meters of arrival so the user is not overwhelmed by continuous navigational guides.",
+    "resources": [
+      "Google Gemini",
+      "Figma"
+    ]
+  },
+  {
     "id": "lrn-20260908-6871",
     "date": "2026-09-08",
     "stageId": "stage-02",
