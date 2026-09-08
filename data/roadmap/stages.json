@@ -51,12 +51,12 @@
     "title": "Spatial UX",
     "tagline": "Designing layout, depth, hierarchy, and affordances when interfaces leave the 2D canvas.",
     "status": "in_progress",
-    "progress": 33,
+    "progress": 50,
     "topics": [
       {
         "id": "top-02-01",
         "name": "Spatial Hierarchy, Distance & Depth Planes",
-        "status": "learning"
+        "status": "understood"
       },
       {
         "id": "top-02-02",
