@@ -1,5 +1,20 @@
 [
   {
+    "id": "lrn-20260908-6871",
+    "date": "2026-09-08",
+    "stageId": "stage-02",
+    "stageName": "02 — Spatial UX",
+    "topic": "Spatial Wayfinding Fundamentals in 3D and XR Environments",
+    "durationMinutes": 60,
+    "confidence": 4,
+    "difficulty": "medium",
+    "notes": "Wayfinding in virtual reality and three-dimensional environments relies on creating reliable spatial mental models rather than flat user interfaces. By adapting urban planner Kevin Lynch's framework, virtual environments use landmarks, paths, nodes, districts, and edges to help users navigate and build mental maps. Navigation is divided into egocentric reference frames for near-field interactions and allocentric reference frames for global positioning. To keep navigation comfortable, designers use a four-tier navigation stack and avoid critical user experience errors by preserving physical heading vectors during teleports, avoiding featureless environments, and using directional spatialized audio instead of aggressive visual indicators to guide head movement.",
+    "takeaway": "First: virtual space design must leverage urban architecture elements like landmarks and thematic districts to help users construct reliable mental maps of their surroundings. Second: developers must design spatial interactions around human ergonomics by utilizing spatialized audio, keeping high-frequency beacons out of the central reading plane, and preventing teleport disorientation.",
+    "resources": [
+      "Google Gemini"
+    ]
+  },
+  {
     "id": "lrn-20260908-3560",
     "date": "2026-09-08",
     "stageId": "stage-02",
