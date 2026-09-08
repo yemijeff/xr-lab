@@ -1,5 +1,21 @@
 [
   {
+    "id": "lrn-20260908-3560",
+    "date": "2026-09-08",
+    "stageId": "stage-02",
+    "stageName": "02 — Spatial UX",
+    "topic": "Principles of Spatial UI Translation and Deconstruction",
+    "durationMinutes": 90,
+    "confidence": 4,
+    "difficulty": "medium",
+    "notes": "The provided sources detail the principles and concrete specifications for translating a flat, two-dimensional user interface into a three-dimensional spatial computing environment, using Spotify as a primary example. Rather than pasting a flat screen onto a floating panel, designers deconstruct the interface into independent, depth-aware components distributed across a three-tier spatial hierarchy. This includes a primary browsing window at one point five meters, detached secondary tool ornaments positioned closer to the user to support micro-pinch gestures, and ambient environmental cues like color spill and soft shadows. Using these principles, a spatial Spotify layout separates navigation into an inward-tilted sidebar, places playlists on a central glass window, floats playback controls as a detached bottom ornament, and handles lyrics via an animated, depth-stepping satellite drawer that glides out from behind the main canvas and rotates inward toward the user. The system also utilizes adaptive translucent glass materials with specular rim highlights, eye-gaze hit targets of at least sixty by sixty points, and dynamic kinetic typography to optimize visual clarity, comfort, and interaction.",
+    "takeaway": "Key Takeaway One  Native spatial design requires deconstructing flat, monolithic screens into floating, multi-layered components mapped to a depth-based hierarchy rather than merely placing a flat mock-up in virtual space.  Key Takeaway Two  Interactive elements must adapt to eye-tracking and gesture limits, using larger bounding hit targets, comfortable resting viewing angles, and natural transitions like depth-stepping to ensure accessibility and comfort.",
+    "resources": [
+      "Google Gemini",
+      "Figma"
+    ]
+  },
+  {
     "id": "lrn-20260907-9550",
     "date": "2026-09-07",
     "stageId": "stage-02",
