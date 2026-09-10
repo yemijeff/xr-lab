@@ -23,9 +23,9 @@
     "id": "sk-spatial-ergonomics",
     "name": "Spatial Ergonomics & Comfort",
     "category": "Spatial UX",
-    "level": 2,
+    "level": 3,
     "targetLevel": 5,
-    "confidence": 2,
+    "confidence": 3,
     "lastPracticed": "2026-09-10",
     "description": "Preventing neck strain, arm fatigue (Gorilla Arm), and cybersickness through human-centered spatial metrics."
   },
