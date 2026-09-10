@@ -3,10 +3,10 @@
     "id": "sk-spatial-ux",
     "name": "Spatial UX & Layout",
     "category": "Spatial UX",
-    "level": 3,
+    "level": 1,
     "targetLevel": 5,
-    "confidence": 3,
-    "lastPracticed": "2026-09-10",
+    "confidence": 1,
+    "lastPracticed": "2026-08-19",
     "description": "Structuring UI hierarchy, ergonomic depth planes, and comfortable viewing zones in 3D volumes."
   },
   {
@@ -23,10 +23,10 @@
     "id": "sk-spatial-ergonomics",
     "name": "Spatial Ergonomics & Comfort",
     "category": "Spatial UX",
-    "level": 1,
+    "level": 2,
     "targetLevel": 5,
-    "confidence": 1,
-    "lastPracticed": "Not started yet",
+    "confidence": 2,
+    "lastPracticed": "2026-09-10",
     "description": "Preventing neck strain, arm fatigue (Gorilla Arm), and cybersickness through human-centered spatial metrics."
   },
   {
