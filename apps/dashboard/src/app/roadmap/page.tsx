@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Map,
   CheckCircle2,
@@ -14,49 +14,57 @@ import { RoadmapStage } from '@xrlab/types';
 export default function RoadmapPage() {
   const [stages, setStages] = useState<RoadmapStage[]>([]);
   const [loading, setLoading] = useState(true);
-  const [updatingTopic, setUpdatingTopic] = useState<string | null>(null);
-
-  const fetchStages = async () => {
-    try {
-      const res = await fetch('/api/roadmap');
-      const data = await res.json();
-      if (data.success) {
-        setStages(data.data);
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const savingRef = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
 
   useEffect(() => {
-    fetchStages();
+    fetch('/api/roadmap')
+      .then((r) => r.json())
+      .then((data) => { if (data.success) setStages(data.data); })
+      .catch(console.error)
+      .finally(() => setLoading(false));
   }, []);
 
-  const handleChangeStatus = async (stageId: string, topicId: string, newStatus: string) => {
-    setUpdatingTopic(topicId);
+  const handleChangeStatus = (stageId: string, topicId: string, newStatus: string) => {
+    // 1. OPTIMISTIC UPDATE — recalculate progress locally and update instantly
+    setStages((prev) =>
+      prev.map((stage) => {
+        if (stage.id !== stageId) return stage;
+        const updatedTopics = stage.topics.map((t) =>
+          t.id === topicId ? { ...t, status: newStatus as typeof t.status } : t
+        );
+        const doneCount = updatedTopics.filter(
+          (t) => t.status === 'mastered' || t.status === 'understood'
+        ).length;
+        const progress = Math.round((doneCount / updatedTopics.length) * 100);
+        return { ...stage, topics: updatedTopics, progress };
+      })
+    );
 
-    try {
-      const res = await fetch('/api/roadmap', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ stageId, topicId, status: newStatus }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setStages(data.data);
+    // 2. DEBOUNCE per topic — cancel previous pending save for same topic
+    const key = `${stageId}-${topicId}`;
+    if (savingRef.current[key]) clearTimeout(savingRef.current[key]);
+
+    savingRef.current[key] = setTimeout(async () => {
+      try {
+        const res = await fetch('/api/roadmap', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ stageId, topicId, status: newStatus }),
+        });
+        const data = await res.json();
+        if (data.success) setStages(data.data);
+      } catch (err) {
+        console.error('Failed to save topic status:', err);
       }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setUpdatingTopic(null);
-    }
+    }, 400);
   };
+
+  if (loading) {
+    return <div className="p-12 text-center text-xs font-mono text-slate-500">Loading roadmap...</div>;
+  }
 
   return (
     <div className="space-y-10">
-      {/* Header */}
       <div className="space-y-3">
         <div className="flex items-center gap-2 text-xs font-mono text-sky-400">
           <Map className="w-4 h-4" />
@@ -66,11 +74,10 @@ export default function RoadmapPage() {
           16-Week Spatial Roadmap
         </h1>
         <p className="text-slate-400 text-sm max-w-2xl leading-relaxed">
-          Track your learning progression across each milestone. Use the dropdown on any topic to directly update your status. Stage completion updates automatically!
+          Use the dropdown on any topic to update your status. Changes save automatically in the background — you can update multiple topics at once!
         </p>
       </div>
 
-      {/* Stages Grid */}
       <div className="space-y-6">
         {stages.map((stage) => {
           const isCurrent = stage.status === 'in_progress';
@@ -87,19 +94,16 @@ export default function RoadmapPage() {
                   : 'bg-[#0c0d14] border-[#1c202d]'
               }`}
             >
-              {/* Stage Header */}
               <div className="p-6 border-b border-[#181b26] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span
-                      className={`px-2.5 py-0.5 rounded text-[10px] font-mono font-medium ${
-                        isCurrent
-                          ? 'bg-sky-500/10 text-sky-400 border border-sky-500/20'
-                          : isCompleted
-                          ? 'bg-emerald-950/50 text-emerald-400 border border-emerald-800/40'
-                          : 'bg-[#141724] text-slate-500 border border-[#22273a]'
-                      }`}
-                    >
+                    <span className={`px-2.5 py-0.5 rounded text-[10px] font-mono font-medium ${
+                      isCurrent
+                        ? 'bg-sky-500/10 text-sky-400 border border-sky-500/20'
+                        : isCompleted
+                        ? 'bg-emerald-950/50 text-emerald-400 border border-emerald-800/40'
+                        : 'bg-[#141724] text-slate-500 border border-[#22273a]'
+                    }`}>
                       STAGE {stage.number}
                     </span>
                     <span className="text-xs font-mono text-slate-500 uppercase">
@@ -110,7 +114,6 @@ export default function RoadmapPage() {
                   <p className="text-xs text-slate-400 max-w-xl leading-relaxed">{stage.tagline}</p>
                 </div>
 
-                {/* Progress Bar & Percentage */}
                 <div className="sm:w-56 space-y-2 bg-[#121524] p-3 rounded-xl border border-[#1e2336] shrink-0">
                   <div className="flex justify-between text-xs font-mono">
                     <span className="text-slate-400">Progress</span>
@@ -118,28 +121,18 @@ export default function RoadmapPage() {
                   </div>
                   <div className="w-full h-2 rounded-full bg-[#1c2030] overflow-hidden">
                     <div
-                      className={`h-full rounded-full transition-all duration-300 ${
-                        isCompleted
-                          ? 'bg-emerald-400'
-                          : 'bg-gradient-to-r from-sky-500 to-indigo-500'
+                      className={`h-full rounded-full transition-all duration-500 ${
+                        isCompleted ? 'bg-emerald-400' : 'bg-gradient-to-r from-sky-500 to-indigo-500'
                       }`}
                       style={{ width: `${stage.progress}%` }}
                     />
                   </div>
-                  <div className="text-[10px] font-mono text-slate-500 flex justify-between">
-                    <span>
-                      {
-                        stage.topics.filter(
-                          (t) => t.status === 'mastered' || t.status === 'understood'
-                        ).length
-                      }{' '}
-                      / {stage.topics.length} done
-                    </span>
+                  <div className="text-[10px] font-mono text-slate-500">
+                    {stage.topics.filter((t) => t.status === 'mastered' || t.status === 'understood').length} / {stage.topics.length} done
                   </div>
                 </div>
               </div>
 
-              {/* Topics List with Dropdown Status Selector */}
               <div className="p-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {stage.topics.map((topic) => {
@@ -147,7 +140,6 @@ export default function RoadmapPage() {
                     const isUnderstood = topic.status === 'understood';
                     const isPracticing = topic.status === 'practicing';
                     const isLearning = topic.status === 'learning';
-                    const isUpdating = updatingTopic === topic.id;
 
                     return (
                       <div
@@ -164,7 +156,6 @@ export default function RoadmapPage() {
                             : 'bg-[#12141e] border-[#1f2434] text-slate-400'
                         }`}
                       >
-                        {/* Topic Icon & Name */}
                         <div className="flex items-center gap-2.5 min-w-0 flex-1">
                           {isMastered ? (
                             <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -180,11 +171,9 @@ export default function RoadmapPage() {
                           <span className="text-xs font-medium truncate">{topic.name}</span>
                         </div>
 
-                        {/* Status Select Dropdown */}
                         <div className="relative shrink-0">
                           <select
                             value={topic.status}
-                            disabled={isUpdating}
                             onChange={(e) => handleChangeStatus(stage.id, topic.id, e.target.value)}
                             className={`appearance-none text-[10px] font-mono uppercase px-2.5 py-1 pr-6 rounded-lg bg-[#0a0c12] border cursor-pointer focus:outline-none transition-colors ${
                               isMastered
