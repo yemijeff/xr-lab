@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "id": "jrn-20260910-2984",
+    "title": "Spatial Design Insights: Spatial Menu Typologies: Mechanics and Comparative Architecture",
+    "slug": "spatial-design-insights-spatial-menu-typologies-mechanics-and-comparative-architecture",
+    "date": "2026-09-10",
+    "type": "journal",
+    "status": "draft",
+    "summary": "Key Takeaway 1: Spatial menu typologies protect users from physical fatigue by bringing interface controls to the user through dynamic spawning, directional micro-flicks, and body-aware placement.  Key Takeaway 2: Accidental activations are prevented by demanding dual physiological conditions, such as coupling palm orientation toward the camera with deliberate eye gaze fixation on the wrist.",
+    "stage": "stage-02",
+    "tags": [
+      "spatial-ux",
+      "xr-foundations",
+      "interaction-design",
+      "ergonomics"
+    ],
+    "skills": [],
+    "relatedExperiments": [],
+    "relatedProjects": [],
+    "featured": false,
+    "body": "# Spatial Design Insights: Spatial Menu Typologies: Mechanics and Comparative Architecture\n\n*Reflections and spatial design breakdown from 02 — Spatial UX.*\n\n## 1. Overview & Context\nWhen transitioning from 2D pixel grids into spatial computing, the primary challenge is moving from screen-bound layouts to physical, volumetric volumes. In exploring **Spatial Menu Typologies: Mechanics and Comparative Architecture**, the focus is understanding how physical comfort and cognitive ergonomics dictate spatial UI.\n\n---\n\n## 2. Core Notes & Synthesis\nSpatial menu design adapts interface controls to three-dimensional environments to prevent biomechanical strain such as shoulder fatigue. The framework establishes four main menu modalities: radial marking menus spawned at gaze coordinates, floating palettes anchored as workspace satellites or flat surface slates, wrist or palm menus leveraging body proprioception, and contextual toolbars offset in front of active volumetric windows. By combining directional muscle memory, eye gaze tracking, and physical body awareness, these spatial architectures prioritize ergonomic comfort and rapid selection over visual hunting.\n\n---\n\n## 3. Spatial UX & Ergonomic Implications\n- **Viewing Envelope:** High-frequency UI must reside within the resting vergence comfort zone (1.0m to 2.0m) to minimize accommodation conflict.\n- **Anchoring Strategy:** Choosing between *World-Locked* (environment permanence), *Body-Locked* (quick access palettes), and *Head-Locked* (critical alerts only) prevents visual fatigue.\n- **Translational Motion Parallax:** In 6DoF headsets, users naturally shift position. Interfaces must maintain perceptual stability across lateral head movements.\n\n---\n\n## 4. Key Spatial Takeaway\n> **Key Takeaway 1: Spatial menu typologies protect users from physical fatigue by bringing interface controls to the user through dynamic spawning, directional micro-flicks, and body-aware placement.  Key Takeaway 2: Accidental activations are prevented by demanding dual physiological conditions, such as coupling palm orientation toward the camera with deliberate eye gaze fixation on the wrist.**\n"
+  }
+]
