@@ -1,15 +1,17 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  Map,
-  CheckCircle2,
-  Circle,
-  PlayCircle,
-  Flame,
-  ChevronDown,
-} from 'lucide-react';
+import { Map, CheckCircle2, Circle, PlayCircle, Flame } from 'lucide-react';
 import { RoadmapStage } from '@xrlab/types';
+import { CustomSelect } from '@/components/ui/CustomSelect';
+
+const STATUS_OPTIONS = [
+  { value: 'not_started', label: 'Not Started', color: 'text-slate-400' },
+  { value: 'learning',    label: 'Learning',    color: 'text-amber-300' },
+  { value: 'practicing',  label: 'Practicing',  color: 'text-purple-300' },
+  { value: 'understood',  label: 'Understood',  color: 'text-sky-300' },
+  { value: 'mastered',    label: 'Mastered',    color: 'text-emerald-400' },
+];
 
 export default function RoadmapPage() {
   const [stages, setStages] = useState<RoadmapStage[]>([]);
@@ -171,30 +173,13 @@ export default function RoadmapPage() {
                           <span className="text-xs font-medium truncate">{topic.name}</span>
                         </div>
 
-                        <div className="relative shrink-0">
-                          <select
-                            value={topic.status}
-                            onChange={(e) => handleChangeStatus(stage.id, topic.id, e.target.value)}
-                            className={`appearance-none text-[10px] font-mono uppercase px-2.5 py-1 pr-6 rounded-lg bg-[#0a0c12] border cursor-pointer focus:outline-none transition-colors ${
-                              isMastered
-                                ? 'text-emerald-400 border-emerald-800/60'
-                                : isUnderstood
-                                ? 'text-sky-400 border-sky-800/60'
-                                : isPracticing
-                                ? 'text-purple-300 border-purple-800/60'
-                                : isLearning
-                                ? 'text-amber-300 border-amber-800/60'
-                                : 'text-slate-400 border-[#24283b] hover:border-slate-500'
-                            }`}
-                          >
-                            <option value="not_started">Not Started</option>
-                            <option value="learning">Learning</option>
-                            <option value="practicing">Practicing</option>
-                            <option value="understood">Understood</option>
-                            <option value="mastered">Mastered</option>
-                          </select>
-                          <ChevronDown className="w-3 h-3 text-slate-500 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
-                        </div>
+
+                        <CustomSelect
+                          compact
+                          value={topic.status}
+                          options={STATUS_OPTIONS}
+                          onChange={(val) => handleChangeStatus(stage.id, topic.id, val)}
+                        />
                       </div>
                     );
                   })}

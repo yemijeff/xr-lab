@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { X, Sparkles, BookOpen, Lightbulb, ArrowRight, CheckCircle2, Copy } from 'lucide-react';
+import { X, Sparkles, BookOpen, Lightbulb, CheckCircle2 } from 'lucide-react';
 import { LearningRecord } from '@xrlab/types';
+import { CustomSelect } from '@/components/ui/CustomSelect';
 
 interface AIAssistantModalProps {
   onClose: () => void;
@@ -68,10 +69,15 @@ export function AIAssistantModal({ onClose }: AIAssistantModalProps) {
     }
   };
 
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveError, setSaveError] = useState('');
+
   const handleSaveDraftToJournal = async () => {
     if (!generatedArticle) return;
     const selectedLog = logs.find((l) => l.id === selectedLogId);
 
+    setIsSaving(true);
+    setSaveError('');
     try {
       const res = await fetch('/api/journal', {
         method: 'POST',
@@ -85,17 +91,24 @@ export function AIAssistantModal({ onClose }: AIAssistantModalProps) {
           status: 'draft',
         }),
       });
-      if (res.ok) {
+      const data = await res.json();
+      if (data.success) {
         setIsSavedToJournal(true);
         setTimeout(() => {
           onClose();
           window.location.href = '/journal';
-        }, 1000);
+        }, 1200);
+      } else {
+        setSaveError(data.error || 'Save failed. Check console for details.');
       }
     } catch (err) {
       console.error(err);
+      setSaveError('Network error while saving.');
+    } finally {
+      setIsSaving(false);
     }
   };
+
 
   return (
     <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
@@ -156,20 +169,18 @@ export function AIAssistantModal({ onClose }: AIAssistantModalProps) {
                   <label className="block text-xs font-mono text-slate-400 mb-1.5 uppercase">
                     Select a Learning Log to Transform:
                   </label>
-                  <select
+                  <CustomSelect
+                    block
                     value={selectedLogId}
-                    onChange={(e) => {
-                      setSelectedLogId(e.target.value);
+                    options={logs.map((log) => ({
+                      value: log.id,
+                      label: `${log.date} — ${log.topic} (${log.stageName})`,
+                    }))}
+                    onChange={(val) => {
+                      setSelectedLogId(val);
                       setGeneratedArticle(null);
                     }}
-                    className="w-full px-3 py-2.5 rounded-xl bg-[#141724] border border-[#24283b] text-slate-200 text-xs focus:outline-none focus:border-indigo-500"
-                  >
-                    {logs.map((log) => (
-                      <option key={log.id} value={log.id}>
-                        {log.date} — {log.topic} ({log.stageName})
-                      </option>
-                    ))}
-                  </select>
+                  />
                 </div>
 
                 <div className="flex justify-end">
@@ -192,23 +203,21 @@ export function AIAssistantModal({ onClose }: AIAssistantModalProps) {
                       </span>
                       <button
                         onClick={handleSaveDraftToJournal}
-                        disabled={isSavedToJournal}
-                        className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-semibold shadow transition-all"
+                        disabled={isSavedToJournal || isSaving}
+                        className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-semibold shadow transition-all disabled:opacity-60"
                       >
                         {isSavedToJournal ? (
-                          <>
-                            <CheckCircle2 className="w-3.5 h-3.5" />
-                            <span>Saved to Journal!</span>
-                          </>
+                          <><CheckCircle2 className="w-3.5 h-3.5" /><span>Saved! Redirecting...</span></>
+                        ) : isSaving ? (
+                          <><span className="w-3 h-3 border-2 border-slate-950/30 border-t-slate-950 rounded-full animate-spin" /><span>Saving...</span></>
                         ) : (
-                          <>
-                            <BookOpen className="w-3.5 h-3.5" />
-                            <span>Save as Journal Draft</span>
-                          </>
+                          <><BookOpen className="w-3.5 h-3.5" /><span>Save as Journal Draft</span></>
                         )}
                       </button>
                     </div>
-
+                    {saveError && (
+                      <p className="text-xs text-rose-400 px-1">⚠ {saveError}</p>
+                    )}
                     <h3 className="text-base font-semibold text-white">{generatedArticle.title}</h3>
                     <p className="text-xs text-slate-400 leading-relaxed italic">{generatedArticle.summary}</p>
                     <pre className="p-3.5 rounded-xl bg-[#10131e] border border-[#1a1f30] text-xs font-mono text-slate-300 whitespace-pre-wrap max-h-60 overflow-y-auto leading-relaxed">
