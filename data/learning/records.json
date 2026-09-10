@@ -1,5 +1,21 @@
 [
   {
+    "id": "lrn-20260910-6937",
+    "date": "2026-09-10",
+    "stageId": "stage-02",
+    "stageName": "02 — Spatial UX",
+    "topic": "Spatial Menu Typologies: Mechanics and Comparative Architecture",
+    "durationMinutes": 60,
+    "confidence": 3,
+    "difficulty": "medium",
+    "notes": "Spatial menu design adapts interface controls to three-dimensional environments to prevent biomechanical strain such as shoulder fatigue. The framework establishes four main menu modalities: radial marking menus spawned at gaze coordinates, floating palettes anchored as workspace satellites or flat surface slates, wrist or palm menus leveraging body proprioception, and contextual toolbars offset in front of active volumetric windows. By combining directional muscle memory, eye gaze tracking, and physical body awareness, these spatial architectures prioritize ergonomic comfort and rapid selection over visual hunting.",
+    "takeaway": "Key Takeaway 1: Spatial menu typologies protect users from physical fatigue by bringing interface controls to the user through dynamic spawning, directional micro-flicks, and body-aware placement.  Key Takeaway 2: Accidental activations are prevented by demanding dual physiological conditions, such as coupling palm orientation toward the camera with deliberate eye gaze fixation on the wrist.",
+    "resources": [
+      "Google Gemini",
+      "Figma"
+    ]
+  },
+  {
     "id": "lrn-20260908-5127",
     "date": "2026-09-08",
     "stageId": "stage-02",
