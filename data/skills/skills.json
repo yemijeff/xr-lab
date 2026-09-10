@@ -3,9 +3,9 @@
     "id": "sk-spatial-ux",
     "name": "Spatial UX & Layout",
     "category": "Spatial UX",
-    "level": 2,
+    "level": 3,
     "targetLevel": 5,
-    "confidence": 2,
+    "confidence": 3,
     "lastPracticed": "2026-09-10",
     "description": "Structuring UI hierarchy, ergonomic depth planes, and comfortable viewing zones in 3D volumes."
   },
