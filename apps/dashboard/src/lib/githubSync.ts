@@ -194,3 +194,31 @@ export async function saveProjectFile(
     return { success: false, mode: 'local', error: errorMsg };
   }
 }
+
+/**
+ * Reads and parses JSON from GitHub API (when GITHUB_TOKEN present) or local disk.
+ */
+export async function getProjectJson<T>(
+  relativeRepoPath: string,
+  localFilePath: string
+): Promise<T> {
+  const result = await readProjectFile(relativeRepoPath);
+  if (result.success && result.content) {
+    try {
+      return JSON.parse(result.content) as T;
+    } catch (err) {
+      console.error(`Error parsing JSON from ${relativeRepoPath}:`, err);
+    }
+  }
+  // Local fallback
+  if (fs.existsSync(localFilePath)) {
+    try {
+      const content = fs.readFileSync(localFilePath, 'utf-8');
+      return JSON.parse(content) as T;
+    } catch (err) {
+      console.error(`Error parsing local JSON from ${localFilePath}:`, err);
+    }
+  }
+  return [] as unknown as T;
+}
+

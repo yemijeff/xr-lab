@@ -1,25 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs';
 import path from 'path';
-import { LearningRecordSchema } from '@xrlab/types';
-import { saveProjectFile } from '@/lib/githubSync';
+import { LearningRecordSchema, LearningRecord } from '@xrlab/types';
+import { saveProjectFile, getProjectJson } from '@/lib/githubSync';
 
-const DATA_FILE_PATH = path.join(process.cwd(), '../../data/learning/records.json');
+const RELATIVE_PATH = 'data/learning/records.json';
+const LOCAL_FILE_PATH = path.join(process.cwd(), '../../', RELATIVE_PATH);
 
-function getRecords() {
-  if (!fs.existsSync(DATA_FILE_PATH)) {
-    return [];
-  }
-  const fileContent = fs.readFileSync(DATA_FILE_PATH, 'utf-8');
-  try {
-    return JSON.parse(fileContent);
-  } catch {
-    return [];
-  }
+async function getRecords(): Promise<LearningRecord[]> {
+  const records = await getProjectJson<LearningRecord[]>(RELATIVE_PATH, LOCAL_FILE_PATH);
+  return Array.isArray(records) ? records : [];
 }
 
 export async function GET() {
-  const records = getRecords();
+  const records = await getRecords();
   return NextResponse.json({ success: true, data: records });
 }
 
@@ -42,12 +35,12 @@ export async function POST(req: NextRequest) {
     }
 
     const newRecord = parseResult.data;
-    const records = getRecords();
+    const records = await getRecords();
     const updatedRecords = [newRecord, ...records];
     const jsonString = JSON.stringify(updatedRecords, null, 2);
 
     const saveResult = await saveProjectFile(
-      'data/learning/records.json',
+      RELATIVE_PATH,
       jsonString,
       `log(learning): ${newRecord.topic}`
     );

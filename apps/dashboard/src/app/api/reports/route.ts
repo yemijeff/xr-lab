@@ -1,24 +1,28 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
 import path from 'path';
 import { LearningRecord, RoadmapStage, Skill } from '@xrlab/types';
+import { getProjectJson } from '@/lib/githubSync';
 
-function loadData() {
+async function loadData() {
   const root = process.cwd();
   const logsPath = path.join(root, '../../data/learning/records.json');
   const stagesPath = path.join(root, '../../data/roadmap/stages.json');
   const skillsPath = path.join(root, '../../data/skills/skills.json');
 
-  const logs: LearningRecord[] = fs.existsSync(logsPath) ? JSON.parse(fs.readFileSync(logsPath, 'utf-8')) : [];
-  const stages: RoadmapStage[] = fs.existsSync(stagesPath) ? JSON.parse(fs.readFileSync(stagesPath, 'utf-8')) : [];
-  const skills: Skill[] = fs.existsSync(skillsPath) ? JSON.parse(fs.readFileSync(skillsPath, 'utf-8')) : [];
+  const logs = await getProjectJson<LearningRecord[]>('data/learning/records.json', logsPath) || [];
+  const stages = await getProjectJson<RoadmapStage[]>('data/roadmap/stages.json', stagesPath) || [];
+  const skills = await getProjectJson<Skill[]>('data/skills/skills.json', skillsPath) || [];
 
-  return { logs, stages, skills };
+  return {
+    logs: Array.isArray(logs) ? logs : [],
+    stages: Array.isArray(stages) ? stages : [],
+    skills: Array.isArray(skills) ? skills : [],
+  };
 }
 
 export async function GET() {
   try {
-    const { logs, stages, skills } = loadData();
+    const { logs, stages, skills } = await loadData();
 
     const totalMinutes = logs.reduce((acc, l) => acc + (l.durationMinutes || 0), 0);
     const totalHours = Math.round((totalMinutes / 60) * 10) / 10;

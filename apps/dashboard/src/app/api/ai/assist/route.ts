@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs';
 import path from 'path';
 import { synthesizeArticleFromNotes, suggestNextTopics } from '@/lib/ai';
 import { RoadmapStage } from '@xrlab/types';
+import { getProjectJson } from '@/lib/githubSync';
 
 export async function POST(req: NextRequest) {
   try {
@@ -16,7 +16,8 @@ export async function POST(req: NextRequest) {
 
     if (action === 'suggest_next_topics') {
       const stagesPath = path.join(process.cwd(), '../../data/roadmap/stages.json');
-      const stages: RoadmapStage[] = fs.existsSync(stagesPath) ? JSON.parse(fs.readFileSync(stagesPath, 'utf-8')) : [];
+      const stagesData = await getProjectJson<RoadmapStage[]>('data/roadmap/stages.json', stagesPath);
+      const stages = Array.isArray(stagesData) ? stagesData : [];
       const suggestions = suggestNextTopics(stages);
       return NextResponse.json({ success: true, data: suggestions });
     }

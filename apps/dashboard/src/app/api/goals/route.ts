@@ -1,22 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs';
 import path from 'path';
 import { Goal } from '@xrlab/types';
-import { saveProjectFile } from '@/lib/githubSync';
+import { saveProjectFile, getProjectJson } from '@/lib/githubSync';
 
-const GOALS_FILE = path.join(process.cwd(), '../../data/goals/goals.json');
+const RELATIVE_PATH = 'data/goals/goals.json';
+const LOCAL_FILE_PATH = path.join(process.cwd(), '../../', RELATIVE_PATH);
 
-function getGoals(): Goal[] {
-  if (!fs.existsSync(GOALS_FILE)) return [];
-  try {
-    return JSON.parse(fs.readFileSync(GOALS_FILE, 'utf-8'));
-  } catch {
-    return [];
-  }
+async function getGoals(): Promise<Goal[]> {
+  const goals = await getProjectJson<Goal[]>(RELATIVE_PATH, LOCAL_FILE_PATH);
+  return Array.isArray(goals) ? goals : [];
 }
 
 export async function GET() {
-  const goals = getGoals();
+  const goals = await getGoals();
   return NextResponse.json({ success: true, data: goals });
 }
 
@@ -25,7 +21,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { goalId, status, progress } = body;
 
-    const goals = getGoals();
+    const goals = await getGoals();
     const goalIndex = goals.findIndex((g) => g.id === goalId);
 
     if (goalIndex === -1) {
@@ -40,7 +36,7 @@ export async function POST(req: NextRequest) {
     const jsonString = JSON.stringify(goals, null, 2);
 
     const saveResult = await saveProjectFile(
-      'data/goals/goals.json',
+      RELATIVE_PATH,
       jsonString,
       `goals: update ${goal.title} status to ${goal.status}`
     );

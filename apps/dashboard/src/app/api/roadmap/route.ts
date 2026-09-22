@@ -1,22 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs';
 import path from 'path';
 import { RoadmapStage } from '@xrlab/types';
-import { saveProjectFile } from '@/lib/githubSync';
+import { saveProjectFile, getProjectJson } from '@/lib/githubSync';
 
-const STAGES_FILE = path.join(process.cwd(), '../../data/roadmap/stages.json');
+const RELATIVE_PATH = 'data/roadmap/stages.json';
+const LOCAL_FILE_PATH = path.join(process.cwd(), '../../', RELATIVE_PATH);
 
-function getStages(): RoadmapStage[] {
-  if (!fs.existsSync(STAGES_FILE)) return [];
-  try {
-    return JSON.parse(fs.readFileSync(STAGES_FILE, 'utf-8'));
-  } catch {
-    return [];
-  }
+async function getStages(): Promise<RoadmapStage[]> {
+  const stages = await getProjectJson<RoadmapStage[]>(RELATIVE_PATH, LOCAL_FILE_PATH);
+  return Array.isArray(stages) ? stages : [];
 }
 
 export async function GET() {
-  const stages = getStages();
+  const stages = await getStages();
   return NextResponse.json({ success: true, data: stages });
 }
 
@@ -25,7 +21,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { stageId, topicId, status } = body;
 
-    const stages = getStages();
+    const stages = await getStages();
     const stageIndex = stages.findIndex((s) => s.id === stageId);
 
     if (stageIndex === -1) {
@@ -55,7 +51,7 @@ export async function POST(req: NextRequest) {
     const jsonString = JSON.stringify(stages, null, 2);
 
     const saveResult = await saveProjectFile(
-      'data/roadmap/stages.json',
+      RELATIVE_PATH,
       jsonString,
       `roadmap: update ${topic?.name || topicId} to ${status}`
     );
